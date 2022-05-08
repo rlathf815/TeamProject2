@@ -72,7 +72,7 @@ public class FirstFragment extends Fragment {
 
         gridView.setAdapter(adapter);
         // 리스트뷰 항목이 선택되었을 때, 항목 클릭 이벤트 처리
-
+        ArrayList<View> selected = new ArrayList<View>();
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 Activity activity = getActivity();
@@ -84,6 +84,12 @@ public class FirstFragment extends Fragment {
                     String month = String.valueOf(current[1]);
                     ((MainActivity) activity).onDateSelected(year, month, day);
                 }
+                if(!selected.isEmpty()) {
+                    selected.get(0).setBackgroundResource(R.drawable.border);
+                    selected.clear();
+                }
+                view.setBackgroundResource(R.drawable.clicked);
+                selected.add(view);
             }
         });
         return rootView;

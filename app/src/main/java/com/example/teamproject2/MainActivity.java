@@ -4,8 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements FirstFragment.fragInterface {
     public static int[] current = new int[3];
@@ -22,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements FirstFragment.fra
         System.out.println("------------------------------------------------------------------호출됨?------------------");
         mContext = this;
     }
+
     public void onDateSelected(String year, String month, String date) {
         Toast.makeText(MainActivity.this, year + "." + month + "." + date,
                 Toast.LENGTH_SHORT).show();
