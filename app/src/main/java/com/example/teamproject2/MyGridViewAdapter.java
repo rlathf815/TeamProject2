@@ -54,7 +54,7 @@ public class MyGridViewAdapter extends BaseAdapter{
         }
 
 
-
+        convertView.setBackgroundResource(R.drawable.border);
         TextView tv_day = convertView.findViewById(R.id.textView_day);
         tv_day.setText(mItems.get(i).day);
 
