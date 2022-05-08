@@ -1,18 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_weight="1"
+    android:background="#0000AAFF"
+    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/yearMonth_height"
+        android:orientation="horizontal"
+        android:background="#FFFBFF"
+        android:gravity="center_horizontal">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+            android:id="@+id/previous"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#3A4D39"
+            android:text="@string/previous" />
+
+
+        <TextView
+            android:id="@+id/YearMonth"
+            android:layout_width="@dimen/yearMonth_width"
+
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_margin="@dimen/yearMonth_topMargin"
+            android:hint="@string/YearMonth"
+            android:textSize="@dimen/yearMonth_textSize" />
+
+        <Button
+            android:id="@+id/next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#3A4D39"
+            android:text="@string/next" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/weekdays_height"
+        android:background="#8B9C84"
+        android:columnCount="7"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:rowCount="1">
+
+        <TextView
+            android:id="@+id/Sun"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_column="0"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:hint="@string/Sun"
+            android:textColorHint="#FFFBFF"
+            android:textSize="@dimen/weekDays_textSize" />
+
+        <TextView
+            android:id="@+id/Mon"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_column="1"
+            android:layout_weight="1"
+            android:textColorHint="#FFFBFF"
+
+            android:gravity="center"
+
+            android:hint="@string/Mon"
+            android:textSize="@dimen/weekDays_textSize" />
+
+        <TextView
+            android:id="@+id/Tue"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_column="2"
+            android:layout_weight="1"
+            android:textColorHint="#FFFBFF"
+
+            android:gravity="center"
+
+            android:hint="@string/Tue"
+            android:textSize="@dimen/weekDays_textSize" />
+
+        <TextView
+            android:id="@+id/Wed"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_column="3"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColorHint="#FFFBFF"
+
+            android:hint="@string/Wed"
+            android:textSize="@dimen/weekDays_textSize" />
+
+        <TextView
+            android:id="@+id/Thu"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_column="4"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColorHint="#FFFBFF"
+
+            android:hint="@string/Thu"
+            android:textSize="@dimen/weekDays_textSize" />
+
+        <TextView
+            android:id="@+id/Fri"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_column="5"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:hint="@string/Fri"
+            android:textColorHint="#FFFBFF"
+
+            android:textSize="@dimen/weekDays_textSize" />
+
+        <TextView
+            android:id="@+id/Sat"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_column="6"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:hint="@string/Sat"
+            android:textColorHint="#FFFBFF"
+
+            android:textSize="@dimen/weekDays_textSize" />
+    </LinearLayout>
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="com.example.teamproject2.FirstFragment"
+        android:id="@+id/fragment"
+        />
+
+</LinearLayout>

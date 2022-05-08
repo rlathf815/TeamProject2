@@ -1,3 +1,13 @@
 <resources>
-    <string name="app_name">TeamProject2</string>
+    <string name="app_name">TeamProject</string>
+    <string name="previous">이전</string>
+    <string name="next">다음</string>
+    <string name="YearMonth">년/월</string>
+    <string name="Sun">일</string>
+    <string name="Mon">월</string>
+    <string name="Tue">화</string>
+    <string name="Wed">수</string>
+    <string name="Thu">목</string>
+    <string name="Fri">금</string>
+    <string name="Sat">토</string>
 </resources>
