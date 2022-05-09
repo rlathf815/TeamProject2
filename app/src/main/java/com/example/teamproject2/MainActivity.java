@@ -32,8 +32,8 @@ public class MainActivity extends AppCompatActivity implements contentFragment.f
         vpPager.setAdapter(adapter);
         vpPager.setCurrentItem(10,false);
 
-        TextView nowDate = (TextView) findViewById(R.id.YearMonth);
-        nowDate.setText(current[0] + "년 " + current[1] + "월");
+        //TextView nowDate = (TextView) findViewById(R.id.YearMonth);
+        //nowDate.setText(current[0] + "년 " + current[1] + "월");
     }
 
     @Override
@@ -69,8 +69,8 @@ public class MainActivity extends AppCompatActivity implements contentFragment.f
         current[0] = year;
         current[1] = month;
         current[2] = day;
-        TextView nowDate = (TextView) findViewById(R.id.YearMonth);
-        nowDate.setText(current[0] + "년 " + current[1] + "월");
+       // TextView nowDate = (TextView) findViewById(R.id.YearMonth);
+        //nowDate.setText(current[0] + "년 " + current[1] + "월");
     }
 
 

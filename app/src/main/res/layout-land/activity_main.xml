@@ -8,45 +8,6 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/yearMonth_height"
-        android:orientation="horizontal"
-        android:background="#FFFBFF"
-        android:gravity="center_horizontal">
-
-
-        <Button
-            android:id="@+id/previous"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#3A4D39"
-            android:text="@string/previous"
-            android:textColor="#FFFBFF"
-
-            />
-
-
-        <TextView
-            android:id="@+id/YearMonth"
-            android:layout_width="@dimen/yearMonth_width"
-
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_margin="@dimen/yearMonth_topMargin"
-            android:hint="@string/YearMonth"
-            android:textSize="@dimen/yearMonth_textSize" />
-
-        <Button
-            android:id="@+id/next"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#3A4D39"
-            android:text="@string/next"
-            android:textColor="#FFFBFF"
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
         android:layout_height="@dimen/weekdays_height"
         android:background="#8B9C84"
         android:columnCount="7"
