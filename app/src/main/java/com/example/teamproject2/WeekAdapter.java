@@ -2,20 +2,18 @@ package com.example.teamproject2;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import java.util.ArrayList;
-
-public class PagerAdapter extends FragmentStateAdapter {
-    //private static int NUM_ITEMS=3;
+public class WeekAdapter extends FragmentStateAdapter {
     private int START_POS =10;
 
     MonthCalc mva = new MonthCalc();
-    public PagerAdapter(FragmentActivity fa) {
-        super(fa);
+
+    public WeekAdapter(FragmentActivity fb) {
+        super(fb);
     }
     @Override
     public long getItemId(int position)
@@ -47,14 +45,10 @@ public class PagerAdapter extends FragmentStateAdapter {
         return (current[0]*10000+current[1]*100+current[2]);
     }
 
-    // 각 페이지를 나타내는 프래그먼트 반환
-
-    //ArrayList<Fragment> pages = new ArrayList<Fragment>();
-    @Override
     public Fragment createFragment(int position)
     {
         long itemID = getItemId(position);
-        contentFragment fg = new contentFragment();
+        WeekFragment fg = new WeekFragment();
         Bundle args = new Bundle();
         args.putLong("yearMonth",itemID);
         fg.setArguments(args);
@@ -65,6 +59,4 @@ public class PagerAdapter extends FragmentStateAdapter {
     public int getItemCount() {
         return 20;
     }
-
-
 }

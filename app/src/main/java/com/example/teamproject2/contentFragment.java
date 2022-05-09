@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -21,9 +22,22 @@ import android.widget.GridView;
 import java.util.ArrayList;
 
 public class contentFragment extends Fragment {
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
 
+    private String mParam1;
+    private String mParam2;
     public contentFragment() {
         // Required empty public constructor
+    }
+
+    public static contentFragment newInstance(String param1, String param2) {
+        contentFragment fragment = new contentFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
+        return fragment;
     }
 
     public contentFragment(int month)
@@ -36,7 +50,6 @@ public class contentFragment extends Fragment {
     public static int[] current = new int[3];
     static MyGridViewAdapter adapter;
     GridView gv;
-    Menu menu;
     //Activity activity = getActivity();
 
     @Override
