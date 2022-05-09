@@ -1,6 +1,7 @@
 package com.example.teamproject2;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Point;
 import android.os.Bundle;
@@ -10,10 +11,14 @@ import androidx.fragment.app.Fragment;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -35,23 +40,25 @@ public class contentFragment extends Fragment {
     GridView gv;
     //Activity activity = getActivity();
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_first, container, false);
+        setHasOptionsMenu(true);
 
         int bd = (int) getArguments().getLong("yearMonth");
         System.out.println("-------------------------------------------------------------------bundle 전달받은 값은"+bd);
         current[0] = bd/10000;
         current[1] = (bd%10000)/100;
         current[2] = (bd%10000)%100;
+
         if (getActivity() instanceof fragInterface) {
             ((fragInterface) getActivity()).getYearMonth(current[0], current[1], current[2]);
             System.out.println("-------------------------------------------------------------------yearmonthInterface 성공여부" + (getActivity() instanceof fragInterface));
         }
         // id가 listview인 리스트뷰 객체를 얻어옴
+
         //current = mva.calcCal();
         info = mva.calcInfo(current);
         int displayWidth = getGridviewSize().x;
@@ -105,6 +112,11 @@ public class contentFragment extends Fragment {
             }
         });
         return rootView;
+    }
+
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu, menu);
     }
 
     public Point getGridviewSize() {
