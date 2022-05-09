@@ -1,16 +1,15 @@
 package com.example.teamproject2;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-
-public class MainActivity extends AppCompatActivity implements FirstFragment.fragInterface {
+public class MainActivity extends AppCompatActivity implements contentFragment.fragInterface {
     public static int[] current = new int[3];
     public static int gridviewWidth, gridviewHeight;
     public static Context mContext;
@@ -20,10 +19,16 @@ public class MainActivity extends AppCompatActivity implements FirstFragment.fra
         setContentView(R.layout.activity_main);
         TextView nowDate;
         nowDate = (TextView)findViewById(R.id.YearMonth);
+        System.out.println("-------------------------------------------------------------------Main current[0]="+current[0]+" [1]="+current[1]);
+
+
+       // System.out.println("------------------------------------------------------------------호출됨?------------------");
+        mContext = this;
+        ViewPager2 vpPager = findViewById(R.id.vpPager);
+        FragmentStateAdapter adapter = new PagerAdapter(this);
+        vpPager.setAdapter(adapter);
         nowDate.setText(current[0] + "년 " + current[1] + "월");
 
-        System.out.println("------------------------------------------------------------------호출됨?------------------");
-        mContext = this;
     }
 
     public void onDateSelected(String year, String month, String date) {
@@ -33,15 +38,15 @@ public class MainActivity extends AppCompatActivity implements FirstFragment.fra
     public void getYearMonth(int year, int month, int day)
     {
         //int[] date = new int[3];
+        System.out.println("-------------------------------------------------------------------getYearmonth호출됨-----------------------");
         current[0] = year;
         current[1] = month;
         current[2] = day;
-
     }
+
 
     @Override
     public void mainGetDisplay(int w, int h) {
-        System.out.println("-------------------------------------------------------------------main에서호출됨-----------------------");
         System.out.println("-------------------------------------------------------------------w="+w+" h="+h);
 
         gridviewWidth = w;

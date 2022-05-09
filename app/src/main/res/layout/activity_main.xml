@@ -137,13 +137,10 @@
             android:hint="@string/Sat"
             android:textColorHint="#FFFBFF"
 
-            android:textSize="@dimen/weekDays_textSize" />
+            android:textSize="@dimen/weekDays_textSize" />5
     </LinearLayout>
-    <fragment
+    <androidx.viewpager2.widget.ViewPager2
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="com.example.teamproject2.FirstFragment"
-        android:id="@+id/fragment"
-        />
-
+        android:id="@+id/vpPager"/>
 </LinearLayout>

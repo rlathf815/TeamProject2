@@ -17,10 +17,15 @@ import android.widget.GridView;
 
 import java.util.ArrayList;
 
-public class FirstFragment extends Fragment {
+public class contentFragment extends Fragment {
 
-    public FirstFragment() {
+    public contentFragment() {
         // Required empty public constructor
+    }
+
+    public contentFragment(int month)
+    {
+
     }
 
     int[] info = new int[4];
@@ -37,12 +42,13 @@ public class FirstFragment extends Fragment {
 
         // id가 listview인 리스트뷰 객체를 얻어옴
         current = mva.calcCal();
+
         info = mva.calcInfo(current);
         int displayWidth = getGridviewSize().x;
         int displayHeight = getGridviewSize().y;
         System.out.println("-------------------------------------------------------------------Frag gridviewidth="+displayWidth+" height="+displayHeight);
         System.out.println("------------------------------------------------------------------adapterInterface 성공여부" + (getActivity() instanceof fragInterface));
-
+        System.out.println("-------------------------------------------------------------------current[0]="+current[0]+" [1]="+current[1]);
         if (getActivity() instanceof fragInterface) {
             ((fragInterface) getActivity()).mainGetDisplay(displayWidth, displayHeight);
             System.out.println("------------------------------------------------------------------호출됨?------------------");
@@ -58,10 +64,9 @@ public class FirstFragment extends Fragment {
         for (int i = 0; i < (43 - (info[0] + info[1])); i++) {
             data.add(new item(" ", "", "", "", current[1]));
         }
-        System.out.println("-------------------------------------------------------------------yearmonthInterface 성공여부" + (getActivity() instanceof fragInterface));
         if (getActivity() instanceof fragInterface) {
             ((fragInterface) getActivity()).getYearMonth(current[0], current[1], current[2]);
-
+            System.out.println("-------------------------------------------------------------------yearmonthInterface 성공여부" + (getActivity() instanceof fragInterface));
         }
         GridView gridView = rootView.findViewById(R.id.gridview);
         gv = gridView;

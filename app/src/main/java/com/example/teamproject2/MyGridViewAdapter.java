@@ -103,10 +103,8 @@ public class MyGridViewAdapter extends BaseAdapter{
         }
         gridviewWidth = ((MainActivity)MainActivity.mContext).gridviewWidth;
         gridviewHeight = ((MainActivity)MainActivity.mContext).gridviewHeight;
-        System.out.println("-------------------------------------------------------------------gridviewidth="+gridviewWidth+" height="+gridviewHeight);
         int width = gridviewWidth/7;
         int height= (gridviewHeight-68)/6;
-        System.out.println("-------------------------------------------------------------------width="+width+" height="+height);
 
         LinearLayout layout = convertView.findViewById(R.id.eachItem);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, height-2);
