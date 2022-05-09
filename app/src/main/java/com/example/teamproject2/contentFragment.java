@@ -1,5 +1,5 @@
 package com.example.teamproject2;
-//재전송
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
