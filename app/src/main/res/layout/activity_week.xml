@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:background="#0000AAFF"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/yearMonth_height"
+        android:orientation="horizontal"
+        android:background="#FFFBFF"
+        android:gravity="left">
+
+        <TextView
+            android:id="@+id/YearMonth"
+            android:layout_width="@dimen/yearMonth_width"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:layout_margin="@dimen/yearMonth_topMargin"
+            android:hint="@string/YearMonth"
+            android:textSize="@dimen/yearMonth_textSize" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <ListView
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:id="@+id/listview"></ListView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/weekdays_height"
+            android:background="#8B9C84"
+            android:columnCount="7"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:rowCount="1">
+
+            <TextView
+                android:id="@+id/Sun"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_column="0"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint="@string/Sun"
+                android:textColorHint="#FFFBFF"
+                android:textSize="@dimen/weekDays_textSize" />
+
+            <TextView
+                android:id="@+id/Mon"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_column="1"
+                android:layout_weight="1"
+                android:textColorHint="#FFFBFF"
+
+                android:gravity="center"
+
+                android:hint="@string/Mon"
+                android:textSize="@dimen/weekDays_textSize" />
+
+            <TextView
+                android:id="@+id/Tue"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_column="2"
+                android:layout_weight="1"
+                android:textColorHint="#FFFBFF"
+
+                android:gravity="center"
+
+                android:hint="@string/Tue"
+                android:textSize="@dimen/weekDays_textSize" />
+
+            <TextView
+                android:id="@+id/Wed"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_column="3"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColorHint="#FFFBFF"
+
+                android:hint="@string/Wed"
+                android:textSize="@dimen/weekDays_textSize" />
+
+            <TextView
+                android:id="@+id/Thu"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_column="4"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColorHint="#FFFBFF"
+
+                android:hint="@string/Thu"
+                android:textSize="@dimen/weekDays_textSize" />
+
+            <TextView
+                android:id="@+id/Fri"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_column="5"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint="@string/Fri"
+                android:textColorHint="#FFFBFF"
+
+                android:textSize="@dimen/weekDays_textSize" />
+
+            <TextView
+                android:id="@+id/Sat"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_column="6"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint="@string/Sat"
+                android:textColorHint="#FFFBFF"
+
+                android:textSize="@dimen/weekDays_textSize" />
+        </LinearLayout>
+    </LinearLayout>
+    <androidx.viewpager2.widget.ViewPager2
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/vpPager"/>
+</LinearLayout>

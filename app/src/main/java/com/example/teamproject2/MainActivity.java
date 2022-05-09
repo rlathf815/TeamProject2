@@ -1,15 +1,18 @@
 package com.example.teamproject2;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.Window;
 import android.widget.TextView;
 import android.widget.Toast;
+
 
 public class MainActivity extends AppCompatActivity implements contentFragment.fragInterface {
     public static int[] current = new int[3];
@@ -19,7 +22,9 @@ public class MainActivity extends AppCompatActivity implements contentFragment.f
     //PagerAdapter fragmentViewPagerAdapter;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
+
         mContext = this;
 
         vpPager = findViewById(R.id.vpPager);
@@ -31,6 +36,28 @@ public class MainActivity extends AppCompatActivity implements contentFragment.f
         nowDate.setText(current[0] + "년 " + current[1] + "월");
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case R.id.action_weekactivity:
+
+                // Do Activity menu item stuff here
+                return true;
+
+            default:
+                break;
+        }
+
+        return false;
+    }
     public void onDateSelected(String year, String month, String date) {
         Toast.makeText(MainActivity.this, year + "." + month + "." + date,
                 Toast.LENGTH_SHORT).show();

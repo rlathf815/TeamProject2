@@ -1,15 +1,14 @@
 package com.example.teamproject2;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Point;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import android.util.DisplayMetrics;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,7 +17,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -38,6 +36,7 @@ public class contentFragment extends Fragment {
     public static int[] current = new int[3];
     static MyGridViewAdapter adapter;
     GridView gv;
+    Menu menu;
     //Activity activity = getActivity();
 
     @Override
@@ -46,7 +45,6 @@ public class contentFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_first, container, false);
         setHasOptionsMenu(true);
-
         int bd = (int) getArguments().getLong("yearMonth");
         System.out.println("-------------------------------------------------------------------bundle 전달받은 값은"+bd);
         current[0] = bd/10000;
@@ -114,10 +112,7 @@ public class contentFragment extends Fragment {
         return rootView;
     }
 
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.menu, menu);
-    }
+
 
     public Point getGridviewSize() {
         //Display display = getActivity().getWindowManager().getDefaultDisplay();

@@ -5,10 +5,16 @@
     android:layout_height="match_parent"
     tools:context=".WeekFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <GridView
+        android:id="@+id/weekGridview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:animateLayoutChanges="false"
+        android:animationCache="false"
+        android:gravity="center"
+
+        android:numColumns="7"
+        android:drawSelectorOnTop="true"
+        />
 
 </FrameLayout>
