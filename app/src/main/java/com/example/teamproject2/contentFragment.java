@@ -27,19 +27,20 @@ public class contentFragment extends Fragment {
     public contentFragment() {
         // Required empty public constructor
     }
-
-    public contentFragment(int month)
+    public void onCreate(Bundle savedInstanceState)
     {
-
+        super.onCreate(savedInstanceState);
     }
-
     int[] info = new int[4];
     MonthCalc mva = new MonthCalc();
     public static int[] current = new int[3];
     static MyGridViewAdapter adapter;
     GridView gv;
     //Activity activity = getActivity();
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9846d0ce794a44cfd33c3723d6fd26dedc1de22c
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -63,12 +64,9 @@ public class contentFragment extends Fragment {
         info = mva.calcInfo(current);
         int displayWidth = getGridviewSize().x;
         int displayHeight = getGridviewSize().y;
-        System.out.println("-------------------------------------------------------------------Frag gridviewidth="+displayWidth+" height="+displayHeight);
-        System.out.println("------------------------------------------------------------------adapterInterface 성공여부" + (getActivity() instanceof fragInterface));
         System.out.println("-------------------------------------------------------------------current[0]="+current[0]+" [1]="+current[1]+" [2]="+current[2]);
         if (getActivity() instanceof fragInterface) {
             ((fragInterface) getActivity()).mainGetDisplay(displayWidth, displayHeight);
-            System.out.println("------------------------------------------------------------------호출됨?------------------");
         }
         //(setYearMonth(current[0],current[1]);
         ArrayList<item> data = new ArrayList<item>();
@@ -126,7 +124,6 @@ public class contentFragment extends Fragment {
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         size.x = displayMetrics.widthPixels;
         size.y = displayMetrics.heightPixels;
-        System.out.println("------------------------------------------------------------------statbarH = "+getStatusBarHeight());
         size.y = size.y - getStatusBarHeight();
 
         return size;
@@ -150,5 +147,7 @@ public class contentFragment extends Fragment {
         public void getYearMonth(int year, int month, int day);
         public void mainGetDisplay(int w, int h);
     }
+
+
 
 }
