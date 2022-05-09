@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity implements contentFragment.f
 
         TextView nowDate = (TextView) findViewById(R.id.YearMonth);
         nowDate.setText(current[0] + "년 " + current[1] + "월");
-        if()
     }
 
     public void onDateSelected(String year, String month, String date) {
