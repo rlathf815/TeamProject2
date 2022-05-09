@@ -39,15 +39,7 @@ public class contentFragment extends Fragment {
     static MyGridViewAdapter adapter;
     GridView gv;
     //Activity activity = getActivity();
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
->>>>>>> 9846d0ce794a44cfd33c3723d6fd26dedc1de22c
-=======
-
-
->>>>>>> parent of 9846d0c (Viewpager2)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

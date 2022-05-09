@@ -1,15 +1,11 @@
 package com.example.teamproject2;
 
 import androidx.appcompat.app.AppCompatActivity;
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 import androidx.fragment.app.Fragment;
-=======
+
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
->>>>>>> 9846d0ce794a44cfd33c3723d6fd26dedc1de22c
-=======
->>>>>>> parent of 9846d0c (Viewpager2)
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -27,15 +23,8 @@ public class MainActivity extends AppCompatActivity implements contentFragment.f
     public static int[] current = new int[3];
     public static int gridviewWidth, gridviewHeight;
     public static Context mContext;
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
-    private ViewPager2 vpPager;
-    //PagerAdapter fragmentViewPagerAdapter;
->>>>>>> 9846d0ce794a44cfd33c3723d6fd26dedc1de22c
-=======
->>>>>>> parent of 9846d0c (Viewpager2)
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
