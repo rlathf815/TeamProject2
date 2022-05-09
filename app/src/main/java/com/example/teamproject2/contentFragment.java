@@ -34,21 +34,31 @@ public class contentFragment extends Fragment {
     static MyGridViewAdapter adapter;
     GridView gv;
     //Activity activity = getActivity();
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_first, container, false);
 
+        int bd = (int) getArguments().getLong("yearMonth");
+        System.out.println("-------------------------------------------------------------------bundle 전달받은 값은"+bd);
+        current[0] = bd/10000;
+        current[1] = (bd%10000)/100;
+        current[2] = (bd%10000)%100;
+        if (getActivity() instanceof fragInterface) {
+            ((fragInterface) getActivity()).getYearMonth(current[0], current[1], current[2]);
+            System.out.println("-------------------------------------------------------------------yearmonthInterface 성공여부" + (getActivity() instanceof fragInterface));
+        }
         // id가 listview인 리스트뷰 객체를 얻어옴
-        current = mva.calcCal();
-
+        //current = mva.calcCal();
         info = mva.calcInfo(current);
         int displayWidth = getGridviewSize().x;
         int displayHeight = getGridviewSize().y;
         System.out.println("-------------------------------------------------------------------Frag gridviewidth="+displayWidth+" height="+displayHeight);
         System.out.println("------------------------------------------------------------------adapterInterface 성공여부" + (getActivity() instanceof fragInterface));
-        System.out.println("-------------------------------------------------------------------current[0]="+current[0]+" [1]="+current[1]);
+        System.out.println("-------------------------------------------------------------------current[0]="+current[0]+" [1]="+current[1]+" [2]="+current[2]);
         if (getActivity() instanceof fragInterface) {
             ((fragInterface) getActivity()).mainGetDisplay(displayWidth, displayHeight);
             System.out.println("------------------------------------------------------------------호출됨?------------------");
@@ -64,10 +74,7 @@ public class contentFragment extends Fragment {
         for (int i = 0; i < (43 - (info[0] + info[1])); i++) {
             data.add(new item(" ", "", "", "", current[1]));
         }
-        if (getActivity() instanceof fragInterface) {
-            ((fragInterface) getActivity()).getYearMonth(current[0], current[1], current[2]);
-            System.out.println("-------------------------------------------------------------------yearmonthInterface 성공여부" + (getActivity() instanceof fragInterface));
-        }
+
         GridView gridView = rootView.findViewById(R.id.gridview);
         gv = gridView;
         // Activity activity = getActivity();

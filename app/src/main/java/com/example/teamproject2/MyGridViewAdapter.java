@@ -86,6 +86,8 @@ public class MyGridViewAdapter extends BaseAdapter{
 
         while(true)
         {
+            System.out.println("-------------------------------------------------------------------j="+j+" day="+mItems.get(j).day);
+
             if(mItems.get(j).day!=" ")
                 break;
             j++;

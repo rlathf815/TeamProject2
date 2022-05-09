@@ -13,21 +13,20 @@ public class MainActivity extends AppCompatActivity implements contentFragment.f
     public static int[] current = new int[3];
     public static int gridviewWidth, gridviewHeight;
     public static Context mContext;
-    public String a;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         TextView nowDate;
         nowDate = (TextView)findViewById(R.id.YearMonth);
-        System.out.println("-------------------------------------------------------------------Main current[0]="+current[0]+" [1]="+current[1]);
 
-
-       // System.out.println("------------------------------------------------------------------호출됨?------------------");
+        //System.out.println("-------------------------------------------------------------------Main current[0]="+current[0]+" [1]="+current[1]);
+        // System.out.println("------------------------------------------------------------------호출됨?------------------");
         mContext = this;
         ViewPager2 vpPager = findViewById(R.id.vpPager);
         FragmentStateAdapter adapter = new PagerAdapter(this);
         vpPager.setAdapter(adapter);
         nowDate.setText(current[0] + "년 " + current[1] + "월");
+        System.out.println("-------------------------------------------------------------------Main current[0]="+current[0]+" [1]="+current[1]);
 
     }
 
@@ -42,6 +41,8 @@ public class MainActivity extends AppCompatActivity implements contentFragment.f
         current[0] = year;
         current[1] = month;
         current[2] = day;
+        TextView nowdate = (TextView) findViewById(R.id.YearMonth);
+        nowdate.setText(current[0] + "년 " + current[1] + "월");
     }
 
 
