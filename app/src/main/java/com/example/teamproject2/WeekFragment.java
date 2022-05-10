@@ -2,6 +2,7 @@ package com.example.teamproject2;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,8 +13,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -128,6 +131,16 @@ public class WeekFragment extends Fragment {
         tv5.setText(String.valueOf(startWeek+4));
         tv6.setText(String.valueOf(startWeek+5));
         tv7.setText(String.valueOf(startWeek+6));
+        LinearLayout lo = rootView.findViewById(R.id.weekdaysLayout);
+        int w = lo.getWidth()/7;
+        tv1.setWidth(w);
+        tv2.setWidth(w);
+        tv3.setWidth(w);
+        tv4.setWidth(w);
+        tv5.setWidth(w);
+        tv6.setWidth(w);
+        tv7.setWidth(w);
+
 
         ArrayList<weekItem> data = new ArrayList<weekItem>();
         for (int i = 0; i<84; i++) {
@@ -138,19 +151,92 @@ public class WeekFragment extends Fragment {
         gridView.setAdapter(adapter);
         // 리스트뷰 항목이 선택되었을 때, 항목 클릭 이벤트 처리
         ArrayList<View> selected = new ArrayList<View>();
-        Activity activity = getActivity();
+
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-               // if (getActivity() instanceof WeekFragment.wfragInterface) {
-                    //System.out.println("-------------------------------------------------------------------weekFrag cicked pos"+position);
-                    //((WeekFragment.wfragInterface)getActivity().onPosSelected(position);
-               // }
+                Activity activity = getActivity();
+                if (activity instanceof WeekActivity) {
+                    System.out.println("-------------------------------------------------------------------weekFrag cicked pos"+position);
+                    ((WeekActivity) activity).onPosSelected(position);
+                }
                 if(!selected.isEmpty()) {
                     selected.get(0).setBackgroundResource(R.drawable.border);
                     selected.clear();
                 }
                 view.setBackgroundResource(R.drawable.clicked);
                 selected.add(view);
+                TextView tv1 = activity.findViewById(R.id.day1);
+                TextView tv2 = activity.findViewById(R.id.day2);
+                TextView tv3 = activity.findViewById(R.id.day3);
+                TextView tv4 = activity.findViewById(R.id.day4);
+                TextView tv5 = activity.findViewById(R.id.day5);
+                TextView tv6 = activity.findViewById(R.id.day6);
+                TextView tv7 = activity.findViewById(R.id.day7);
+
+                switch (position%7) {
+                    case 0:
+                        tv1.setBackgroundColor(Color.parseColor("#8B9C84"));
+                        tv2.setBackgroundColor(Color.parseColor("#CADFC1"));
+                        tv3.setBackgroundColor(Color.parseColor("#CADFC1"));
+                        tv4.setBackgroundColor(Color.parseColor("#CADFC1"));
+                        tv5.setBackgroundColor(Color.parseColor("#CADFC1"));
+                        tv6.setBackgroundColor(Color.parseColor("#CADFC1"));
+                        tv7.setBackgroundColor(Color.parseColor("#CADFC1"));
+                        break;
+                    case 1:
+                        tv1.setBackgroundColor(Color.parseColor("#CADFC1"));
+                        tv2.setBackgroundColor(Color.parseColor("#8B9C84"));
+                        tv3.setBackgroundColor(Color.parseColor("#CADFC1"));
+                        tv4.setBackgroundColor(Color.parseColor("#CADFC1"));
+                        tv5.setBackgroundColor(Color.parseColor("#CADFC1"));
+                        tv6.setBackgroundColor(Color.parseColor("#CADFC1"));
+                        tv7.setBackgroundColor(Color.parseColor("#CADFC1"));                        break;
+                    case 2:
+                        tv1.setBackgroundColor(Color.parseColor("#CADFC1"));
+                        tv2.setBackgroundColor(Color.parseColor("#CADFC1"));
+                        tv3.setBackgroundColor(Color.parseColor("#8B9C84"));
+                        tv4.setBackgroundColor(Color.parseColor("#CADFC1"));
+                        tv5.setBackgroundColor(Color.parseColor("#CADFC1"));
+                        tv6.setBackgroundColor(Color.parseColor("#CADFC1"));
+                        tv7.setBackgroundColor(Color.parseColor("#CADFC1"));
+                        break;
+                    case 3:
+                        tv1.setBackgroundColor(Color.parseColor("#CADFC1"));
+                        tv2.setBackgroundColor(Color.parseColor("#CADFC1"));
+                        tv3.setBackgroundColor(Color.parseColor("#CADFC1"));
+                        tv4.setBackgroundColor(Color.parseColor("#8B9C84"));
+                        tv5.setBackgroundColor(Color.parseColor("#CADFC1"));
+                        tv6.setBackgroundColor(Color.parseColor("#CADFC1"));
+                        tv7.setBackgroundColor(Color.parseColor("#CADFC1"));                        break;
+                    case 4:
+                        tv1.setBackgroundColor(Color.parseColor("#CADFC1"));
+                        tv2.setBackgroundColor(Color.parseColor("#CADFC1"));
+                        tv3.setBackgroundColor(Color.parseColor("#CADFC1"));
+                        tv4.setBackgroundColor(Color.parseColor("#CADFC1"));
+                        tv5.setBackgroundColor(Color.parseColor("#8B9C84"));
+                        tv6.setBackgroundColor(Color.parseColor("#CADFC1"));
+                        tv7.setBackgroundColor(Color.parseColor("#CADFC1"));                        break;
+                    case 5:
+                        tv1.setBackgroundColor(Color.parseColor("#CADFC1"));
+                        tv2.setBackgroundColor(Color.parseColor("#CADFC1"));
+                        tv3.setBackgroundColor(Color.parseColor("#CADFC1"));
+                        tv4.setBackgroundColor(Color.parseColor("#CADFC1"));
+                        tv5.setBackgroundColor(Color.parseColor("#CADFC1"));
+                        tv6.setBackgroundColor(Color.parseColor("#8B9C84"));
+                        tv7.setBackgroundColor(Color.parseColor("#CADFC1"));                        break;
+                    case 6:
+                        tv1.setBackgroundColor(Color.parseColor("#CADFC1"));
+                        tv2.setBackgroundColor(Color.parseColor("#CADFC1"));
+                        tv3.setBackgroundColor(Color.parseColor("#CADFC1"));
+                        tv4.setBackgroundColor(Color.parseColor("#CADFC1"));
+                        tv5.setBackgroundColor(Color.parseColor("#CADFC1"));
+                        tv6.setBackgroundColor(Color.parseColor("#CADFC1"));
+                        tv7.setBackgroundColor(Color.parseColor("#8B9C84"));
+                        break;
+
+
+
+                }
             }
         });
         return rootView;
@@ -160,6 +246,6 @@ public class WeekFragment extends Fragment {
         public void getYearMonth(int year, int month, int day);
         public void mainGetDisplay(int w, int h);
         public void setAppbar(int year, int month);
-        public void onPosSelected(int pos);
+
     }
 }

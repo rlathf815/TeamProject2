@@ -117,7 +117,6 @@ public class contentFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 Activity activity = getActivity();
 
-                // 선택된 항목 위치 (position)을 이 프래그먼트와 연결된 MainActivity로 전달
                 if (activity instanceof MainActivity) {
                     String day = ((item) adapter.getItem(position)).day;
                     String year = String.valueOf(current[0]);
