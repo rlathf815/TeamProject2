@@ -22,51 +22,61 @@ import android.widget.GridView;
 import java.util.ArrayList;
 
 public class contentFragment extends Fragment {
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    private String mParam1;
-    private String mParam2;
-    public contentFragment() {
-        // Required empty public constructor
-    }
-
-    public static contentFragment newInstance(String param1, String param2) {
-        contentFragment fragment = new contentFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    public contentFragment(int month)
-    {
-
-    }
-
+    private int mParam1;
+    private int mParam2;
     int[] info = new int[4];
     MonthCalc mva = new MonthCalc();
     public static int[] current = new int[3];
     static MyGridViewAdapter adapter;
     GridView gv;
-    //Activity activity = getActivity();
+    public contentFragment() {
+        // Required empty public constructor
+    }
+
+    public static contentFragment newInstance(int param1, int param2) {
+        contentFragment fragment = new contentFragment();
+        Bundle args = new Bundle();
+        args.putInt("Year", param1);
+        args.putInt("Month", param2);
+        fragment.setArguments(args);
+        return fragment;
+    }
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            mParam1 = getArguments().getInt("Year");
+            mParam2 = getArguments().getInt("Month");
+        }
+        current[0]= mParam1;
+        current[1]= mParam2;
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        if (getArguments() != null) {
+
+            mParam1 = getArguments().getInt("Year");
+            mParam2 = getArguments().getInt("Month");
+            System.out.println("-------------------------------------------------------------------year"+mParam1);
+            current[0]= mParam1;
+            current[1]= mParam2;
+        }
         View rootView = inflater.inflate(R.layout.fragment_first, container, false);
         setHasOptionsMenu(true);
         int bd = (int) getArguments().getLong("yearMonth");
         System.out.println("-------------------------------------------------------------------bundle 전달받은 값은"+bd);
-        current[0] = bd/10000;
-        current[1] = (bd%10000)/100;
-        current[2] = (bd%10000)%100;
-
+        if(bd!=0) {
+            current[0] = bd / 10000;
+            current[1] = (bd % 10000) / 100;
+            current[2] = (bd % 10000) % 100;
+        }
         if (getActivity() instanceof fragInterface) {
             ((fragInterface) getActivity()).getYearMonth(current[0], current[1], current[2]);
-            System.out.println("-------------------------------------------------------------------yearmonthInterface 성공여부" + (getActivity() instanceof fragInterface));
+            ((fragInterface) getActivity()).setAppbar(current[0], current[1]);
         }
         // id가 listview인 리스트뷰 객체를 얻어옴
 
@@ -157,6 +167,7 @@ public class contentFragment extends Fragment {
     public interface fragInterface {
         public void getYearMonth(int year, int month, int day);
         public void mainGetDisplay(int w, int h);
+        public void setAppbar(int year, int month);
     }
 
 }

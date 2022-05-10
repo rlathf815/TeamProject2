@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements contentFragment.f
 
     }
 
+
     public void onDateSelected(String year, String month, String date) {
         Toast.makeText(MainActivity.this, year + "." + month + "." + date,
                 Toast.LENGTH_SHORT).show();
@@ -65,12 +66,15 @@ public class MainActivity extends AppCompatActivity implements contentFragment.f
 
     public boolean onOptionsItemSelected(MenuItem item) {
         FragmentManager fragmentManager = getSupportFragmentManager();
+        ActionBar ab = getSupportActionBar();
         switch (item.getItemId()) {
             case R.id.action_monthactivity:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fg, contentFragment.newInstance(" ", " ")).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fg, contentFragment.newInstance(current[0], current[1])).commit();
+                //ActionBar ab = getSupportActionBar();
+                ab.setTitle(current[0] + "년 " + current[1] + "월");
             case R.id.action_weekactivity:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fg, WeekFragment.newInstance(" ", " ")).commit();
-
+                getSupportFragmentManager().beginTransaction().replace(R.id.fg, WeekFragment.newInstance(current[0], current[1])).commit();
+                ab.setTitle(current[0] + "년 " + current[1] + "월");
         }
         return super.onOptionsItemSelected(item);
     }
@@ -81,5 +85,11 @@ public class MainActivity extends AppCompatActivity implements contentFragment.f
         gridviewWidth = w;
         gridviewHeight = h;
     }
+    public void setAppbar(int year, int month)
+    {
+        ActionBar ab = getSupportActionBar();
+        ab.setTitle(year + "년 " + month + "월");
+    }
+
 
 }

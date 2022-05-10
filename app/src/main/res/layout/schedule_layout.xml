@@ -8,28 +8,15 @@
     android:padding="10dp">
 
     <TextView
-        android:id="@+id/textView_day"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_weight="2"
-        android:gravity="center"
-        android:hint="day"
-        android:textColor="#000000"
-        android:textColorHint="#000000"
-        android:textSize="@dimen/day_textSize" />
-
-    <TextView
-        android:id="@+id/textView_schedule1"
+        android:id="@+id/week1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textSize = "5sp"
-        android:hint="schedule"
 
         />
     <TextView
-        android:id="@+id/textView_schedule2"
+        android:id="@+id/week2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -37,12 +24,11 @@
 
         />
     <TextView
-        android:id="@+id/textView_schedule3"
+        android:id="@+id/week3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textSize = "5sp"
-
-    />
+        />
 
 </LinearLayout>
