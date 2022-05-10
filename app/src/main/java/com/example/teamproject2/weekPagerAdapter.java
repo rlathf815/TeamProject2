@@ -32,7 +32,8 @@ public class weekPagerAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position)
     {
         //long itemID = getItemId(position);
-        WeekFragment fg = new WeekFragment();
+        //WeekFragment fg = new WeekFragment();
+        WeekFragment fg = WeekFragment.newInstance(2022, 5);
 
         return fg;
     }

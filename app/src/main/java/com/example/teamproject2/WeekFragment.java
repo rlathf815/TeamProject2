@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -98,6 +99,27 @@ public class WeekFragment extends Fragment {
 
 
         info = mva.calcInfo(current);
+        int weekday = mva.calcWeekDay(current)-1;
+        int startWeek = current[2] - weekday;
+        System.out.println("-------------------------------------------------------------------요일"+weekday);
+
+        System.out.println("-------------------------------------------------------------------날짜"+current[2]);
+        TextView tv1 = rootView.findViewById(R.id.day1);
+        TextView tv2 = rootView.findViewById(R.id.day2);
+        TextView tv3 = rootView.findViewById(R.id.day3);
+        TextView tv4 = rootView.findViewById(R.id.day4);
+        TextView tv5 = rootView.findViewById(R.id.day5);
+        TextView tv6 = rootView.findViewById(R.id.day6);
+        TextView tv7 = rootView.findViewById(R.id.day7);
+        tv1.setText(String.valueOf(startWeek));
+        tv2.setText(String.valueOf(startWeek+1));
+        tv3.setText(String.valueOf(startWeek+2));
+        tv4.setText(String.valueOf(startWeek+3));
+        tv5.setText(String.valueOf(startWeek+4));
+        tv6.setText(String.valueOf(startWeek+5));
+        tv7.setText(String.valueOf(startWeek+6));
+
+
         ArrayList<weekItem> data = new ArrayList<weekItem>();
         for (int i = 0; i<84; i++) {
             data.add(new weekItem("",i));

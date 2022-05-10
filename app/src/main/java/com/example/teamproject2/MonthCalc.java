@@ -37,5 +37,13 @@ public class MonthCalc {
         info[1] = maxDays;
         return info;
     }
+    public int calcWeekDay(int[] yearMonth)
+    {
+        Calendar cal = Calendar.getInstance();
+        cal.set(yearMonth[0], yearMonth[1], yearMonth[2]);
+        int blank = cal.get(Calendar.DAY_OF_WEEK);
+        return blank;
+    }
+
     MonthCalc(){}
 }
