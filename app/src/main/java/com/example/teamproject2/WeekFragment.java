@@ -139,14 +139,13 @@ public class WeekFragment extends Fragment {
         gridView.setAdapter(adapter);
         // 리스트뷰 항목이 선택되었을 때, 항목 클릭 이벤트 처리
         ArrayList<View> selected = new ArrayList<View>();
+        Activity activity = getActivity();
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Activity activity = getActivity();
-
-                if (activity instanceof WeekActivity) {
-
-                    ((WeekActivity) activity).onPosSelected(position);
-                }
+               // if (getActivity() instanceof WeekFragment.wfragInterface) {
+                    //System.out.println("-------------------------------------------------------------------weekFrag cicked pos"+position);
+                    //((WeekFragment.wfragInterface)getActivity().onPosSelected(position);
+               // }
                 if(!selected.isEmpty()) {
                     selected.get(0).setBackgroundResource(R.drawable.border);
                     selected.clear();
@@ -161,5 +160,6 @@ public class WeekFragment extends Fragment {
         public void getYearMonth(int year, int month, int day);
         public void mainGetDisplay(int w, int h);
         public void setAppbar(int year, int month);
+        public void onPosSelected(int pos);
     }
 }

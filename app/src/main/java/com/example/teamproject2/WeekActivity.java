@@ -60,8 +60,8 @@ public class WeekActivity extends AppCompatActivity implements WeekFragment.wfra
         return super.onOptionsItemSelected(item);
     }
     public void onPosSelected(int pos) {
-        Toast.makeText(WeekActivity.this, pos,
-                Toast.LENGTH_SHORT).show();
+        System.out.println("-------------------------------------------------------------------weekActivity onposselected-position"+pos);
+        Toast.makeText(WeekActivity.this, pos,Toast.LENGTH_SHORT).show();
     }
     @Override
     public void getYearMonth(int year, int month, int day) {
