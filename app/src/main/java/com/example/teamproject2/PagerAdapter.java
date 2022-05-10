@@ -27,8 +27,6 @@ public class PagerAdapter extends FragmentStateAdapter {
         System.out.println("---------------------------------------------------------------position"+position);
 
         int move = position - START_POS;
-        System.out.println("---------------------------------------------------------------move="+move);
-        //if(move==0) return (current[0]*10000+current[1]*100+current[2]);
         if(current[1]+move<1)
         {
             current[0]--;

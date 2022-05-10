@@ -129,7 +129,6 @@ public class WeekFragment extends Fragment {
         tv6.setText(String.valueOf(startWeek+5));
         tv7.setText(String.valueOf(startWeek+6));
 
-
         ArrayList<weekItem> data = new ArrayList<weekItem>();
         for (int i = 0; i<84; i++) {
             data.add(new weekItem("",i));
@@ -156,6 +155,7 @@ public class WeekFragment extends Fragment {
         });
         return rootView;
     }
+
     public interface wfragInterface {
         public void getYearMonth(int year, int month, int day);
         public void mainGetDisplay(int w, int h);

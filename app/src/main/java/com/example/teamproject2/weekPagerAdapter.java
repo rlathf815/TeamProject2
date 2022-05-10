@@ -21,8 +21,27 @@ public class weekPagerAdapter extends FragmentStateAdapter {
     @Override
     public long getItemId(int position)
     {
-
-        return 0;
+        int[] current = mva.calcCal();
+        int[] info =mva.calcInfo(current);
+        if(position ==START_POS)
+            return (current[0]*10000+current[1]*100+current[2]);
+        int move = position - START_POS;
+        if(current[2]+move<1)
+        {
+            current[1]--;
+            info = mva.calcInfo(current);
+            current[2]=(current[2]+(move*7))+info[1];
+        }
+        else if(current[2]+move>info[1])
+        {
+            current[1]++;
+            current[2]=current[2]+(move*7)-info[1];
+        }
+        else
+        {
+            current[2]+=move*7;
+        }
+        return (current[0]*10000+current[1]*100+current[2]);
     }
 
     // 각 페이지를 나타내는 프래그먼트 반환
@@ -31,9 +50,14 @@ public class weekPagerAdapter extends FragmentStateAdapter {
     @Override
     public Fragment createFragment(int position)
     {
-        //long itemID = getItemId(position);
+        long itemID = getItemId(position);
+        int[] current = new int[3];
+        current[0] = (int)itemID / 10000;
+        current[1] = ((int)itemID % 10000) / 100;
+        current[2] = ((int)itemID % 10000) % 100;
+        System.out.println("---------------------------연 월 일"+itemID);
         //WeekFragment fg = new WeekFragment();
-        WeekFragment fg = WeekFragment.newInstance(2022, 5,10);
+        WeekFragment fg = WeekFragment.newInstance(current[0], current[1],current[2]);
 
         return fg;
     }
