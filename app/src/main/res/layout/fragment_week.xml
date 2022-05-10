@@ -29,7 +29,7 @@
             `<LinearLayout
                 android:id="@+id/weekdaysLayout"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="153px"
                 android:background="#CADFC1"
                 android:columnCount="7"
                 android:gravity="center_horizontal"
@@ -43,8 +43,10 @@
                     android:layout_column="0"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:hint="1"
                     android:textColorHint="#000000"
+
+                    android:hint="1"
+                    android:textColor="#000000"
                     android:textSize="@dimen/weekDays_textSize" />
 
                 <TextView
@@ -56,6 +58,7 @@
                     android:gravity="center"
 
                     android:hint="2"
+                    android:textColor="#000000"
 
                     android:textColorHint="#000000"
                     android:textSize="@dimen/weekDays_textSize" />
@@ -69,6 +72,7 @@
                     android:gravity="center"
 
                     android:hint="3"
+                    android:textColor="#000000"
 
                     android:textColorHint="#000000"
                     android:textSize="@dimen/weekDays_textSize" />
@@ -81,6 +85,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:hint="4"
+                    android:textColor="#000000"
 
                     android:textColorHint="#000000"
                     android:textSize="@dimen/weekDays_textSize" />
@@ -93,6 +98,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:hint="5"
+                    android:textColor="#000000"
 
                     android:textColorHint="#000000"
                     android:textSize="@dimen/weekDays_textSize" />
@@ -106,6 +112,7 @@
                     android:gravity="center"
                     android:hint="6"
                     android:textColorHint="#000000"
+                    android:textColor="#000000"
 
                     android:textSize="@dimen/weekDays_textSize" />
 
@@ -118,6 +125,7 @@
                     android:gravity="center"
                     android:hint="7"
                     android:textColorHint="#000000"
+                    android:textColor="#000000"
 
                     android:textSize="@dimen/weekDays_textSize" />
             </LinearLayout>`

@@ -31,11 +31,6 @@ public class WeekActivity extends AppCompatActivity implements WeekFragment.wfra
         weekPager.setAdapter(adapter);
         weekPager.setCurrentItem(10,false);
 
-        String[] time={
-        "0", "1", "2", "3", "4", "5", "6", "7", "8","9","10","11", "12", "13", "14", "15","16","17","18","19","20", "21", "22", "23"};
-        ArrayAdapter<String> adapt =new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, time);
-        ListView list = (ListView) findViewById(R.id.listview);
-        list.setAdapter(adapt);
 
     }
 
@@ -57,7 +52,7 @@ public class WeekActivity extends AppCompatActivity implements WeekFragment.wfra
                 return true;
             case R.id.action_weekactivity:
                 startActivity(new Intent(this,WeekActivity.class));
-                getSupportFragmentManager().beginTransaction().replace(R.id.fg, WeekFragment.newInstance(current[0], current[1])).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fg, WeekFragment.newInstance(current[0], current[1],current[2])).commit();
                 ab.setTitle(current[0] + "년 " + current[1] + "월");
 
                 return true;

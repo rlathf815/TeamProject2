@@ -59,7 +59,7 @@ public class weekGridviewAdapter extends BaseAdapter{
         gridviewWidth = ((MainActivity)MainActivity.mContext).gridviewWidth;
         gridviewHeight = ((MainActivity)MainActivity.mContext).gridviewHeight;
         int width = (gridviewWidth-20)/7;
-        int height = (gridviewHeight-210)/12;
+        int height = (gridviewHeight-240)/12;
         //int height= (gridviewHeight-68)/6;
 System.out.println("_-----------------------------------------------------------"+height);
         LinearLayout layout = convertView.findViewById(R.id.weekItem);

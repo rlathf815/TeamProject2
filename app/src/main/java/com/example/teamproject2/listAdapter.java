@@ -46,7 +46,7 @@ public class listAdapter extends BaseAdapter {
       //  System.out.println("--------------------------------why-------------------------" + (mItems.get(position+1).time));
 
         tv.setText(mItems.get(position).time);
-        tv.setHeight(153);
+        tv.setHeight(152);
         return convertView;
     }
 }

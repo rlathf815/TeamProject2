@@ -25,6 +25,8 @@ public class WeekFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private int mParam1;
     private int mParam2;
+    private int mParam3;
+
     static listAdapter Ladapter;
     public WeekFragment() {
         // Required empty public constructor
@@ -37,11 +39,12 @@ public class WeekFragment extends Fragment {
     GridView gridView;
 
     // TODO: Rename and change types and number of parameters
-    public static WeekFragment newInstance(int param1, int param2) {
+    public static WeekFragment newInstance(int param1, int param2, int param3) {
         WeekFragment fragment = new WeekFragment();
         Bundle args = new Bundle();
         args.putInt("Year", param1);
         args.putInt("Month", param2);
+        args.putInt("Day", param3);
         fragment.setArguments(args);
         return fragment;
     }
@@ -53,9 +56,12 @@ public class WeekFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getInt("Year");
             mParam2 = getArguments().getInt("Month");
+            mParam3 = getArguments().getInt("Day");
+
         }
         current[0]= mParam1;
         current[1]= mParam2;
+        current[2]=mParam3;
 
     }
 
@@ -68,9 +74,13 @@ public class WeekFragment extends Fragment {
 
             mParam1 = getArguments().getInt("Year");
             mParam2 = getArguments().getInt("Month");
+            mParam3 = getArguments().getInt("Day");
+
             System.out.println("-------------------------------------------------------------------year"+mParam1);
             current[0]= mParam1;
             current[1]= mParam2;
+            current[2]= mParam3;
+
         }
 
         View rootView = inflater.inflate(R.layout.fragment_week, container, false);

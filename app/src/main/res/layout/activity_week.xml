@@ -21,7 +21,6 @@
             android:layout_width="20dp"
             android:layout_height="match_parent"
             android:hint="0"
-
             />
 
         <TextView
