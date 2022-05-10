@@ -1,5 +1,6 @@
 package com.example.teamproject2;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -28,9 +29,11 @@ public class WeekActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_monthactivity:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fg, contentFragment.newInstance(" ", " ")).commit();
+                return true;
             case R.id.action_weekactivity:
+                startActivity(new Intent(this,WeekActivity.class));
                 getSupportFragmentManager().beginTransaction().replace(R.id.fg, WeekFragment.newInstance(" ", " ")).commit();
-
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }

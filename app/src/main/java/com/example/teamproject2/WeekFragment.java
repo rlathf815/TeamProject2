@@ -33,7 +33,7 @@ public class WeekFragment extends Fragment {
     MonthCalc mva = new MonthCalc();
     public static int[] current = new int[3];
     static MyGridViewAdapter adapter;
-    GridView gv;
+    GridView gridView;
 
     // TODO: Rename and change types and number of parameters
     public static WeekFragment newInstance(String param1, String param2) {
