@@ -7,21 +7,132 @@
     android:id="@+id/wf">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    <ListView
-        android:id="@+id/listview"
-        android:layout_width="20dp"
-        android:layout_height="match_parent"></ListView>
-
-    <GridView
-        android:id="@+id/weekGridview"
-        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:animateLayoutChanges="false"
-        android:animationCache="false"
-        android:layout_gravity="right"
-        android:numColumns="7"
+        android:orientation="horizontal">
 
-        />
+        <ListView
+            android:id="@+id/listview"
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:divider="#8B9C84"
+            android:dividerHeight="0.5dp"
+            android:textColor="#000000"
+            android:visibility="visible"
+            android:orientation="vertical"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            `<LinearLayout
+                android:id="@+id/weekdaysLayout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#CADFC1"
+                android:columnCount="7"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:rowCount="1">
+
+                <TextView
+                    android:id="@+id/day1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_column="0"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:hint="1"
+                    android:textColorHint="#000000"
+                    android:textSize="@dimen/weekDays_textSize" />
+
+                <TextView
+                    android:id="@+id/day2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_column="1"
+                    android:layout_weight="1"
+                    android:gravity="center"
+
+                    android:hint="2"
+
+                    android:textColorHint="#000000"
+                    android:textSize="@dimen/weekDays_textSize" />
+
+                <TextView
+                    android:id="@+id/day3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_column="2"
+                    android:layout_weight="1"
+                    android:gravity="center"
+
+                    android:hint="3"
+
+                    android:textColorHint="#000000"
+                    android:textSize="@dimen/weekDays_textSize" />
+
+                <TextView
+                    android:id="@+id/day4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_column="3"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:hint="4"
+
+                    android:textColorHint="#000000"
+                    android:textSize="@dimen/weekDays_textSize" />
+
+                <TextView
+                    android:id="@+id/day5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_column="4"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:hint="5"
+
+                    android:textColorHint="#000000"
+                    android:textSize="@dimen/weekDays_textSize" />
+
+                <TextView
+                    android:id="@+id/day6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_column="5"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:hint="6"
+                    android:textColorHint="#000000"
+
+                    android:textSize="@dimen/weekDays_textSize" />
+
+                <TextView
+                    android:id="@+id/day7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_column="6"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:hint="7"
+                    android:textColorHint="#000000"
+
+                    android:textSize="@dimen/weekDays_textSize" />
+            </LinearLayout>`
+
+
+        <GridView
+            android:id="@+id/weekGridview"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:animateLayoutChanges="false"
+            android:animationCache="false"
+            android:layout_gravity="right"
+            android:numColumns="7"
+            />
+        </LinearLayout>
+
     </LinearLayout>
 </FrameLayout>

@@ -10,7 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.GridView;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 
@@ -22,7 +24,7 @@ public class WeekFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private int mParam1;
     private int mParam2;
-
+    static listAdapter Ladapter;
     public WeekFragment() {
         // Required empty public constructor
     }
@@ -46,12 +48,14 @@ public class WeekFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             mParam1 = getArguments().getInt("Year");
             mParam2 = getArguments().getInt("Month");
         }
         current[0]= mParam1;
         current[1]= mParam2;
+
     }
 
     @Override
@@ -69,7 +73,13 @@ public class WeekFragment extends Fragment {
         }
 
         View rootView = inflater.inflate(R.layout.fragment_week, container, false);
-
+        ArrayList<timeline> time = new ArrayList<timeline>();
+        //time.add(new timeline(""));
+        for(int i=0;i<=24;i+=2) time.add(new timeline(i));
+        Ladapter=new listAdapter(getActivity().getApplicationContext(),R.layout.timeline,time);
+        ListView list = (ListView) rootView.findViewById(R.id.listview);
+        list.setAdapter(Ladapter);
+        //list.bringToFront();
         setHasOptionsMenu(true);
         int bd = (int) getArguments().getLong("yearMonth");
 
@@ -86,13 +96,12 @@ public class WeekFragment extends Fragment {
             ((WeekFragment.wfragInterface) getActivity()).setAppbar(current[0], current[1]);
         }
 
+
         info = mva.calcInfo(current);
         ArrayList<weekItem> data = new ArrayList<weekItem>();
-        for (int i = 0; i<168; i++) {
+        for (int i = 0; i<84; i++) {
             data.add(new weekItem("",i));
         }
-
-
         adapter = new weekGridviewAdapter(getActivity(), R.layout.schedule_layout, data);
         gridView = rootView.findViewById(R.id.weekGridview);
         gridView.setAdapter(adapter);

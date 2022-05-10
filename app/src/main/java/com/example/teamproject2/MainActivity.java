@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements contentFragment.f
         current[2] = day;
         ActionBar ab = getSupportActionBar();
         ab.setTitle(current[0] + "년 " + current[1] + "월");
-       // TextView nowDate = (TextView) findViewById(R.id.YearMonth);
+        // TextView nowDate = (TextView) findViewById(R.id.YearMonth);
         //nowDate.setText(current[0] + "년 " + current[1] + "월");
     }
 
@@ -79,11 +79,11 @@ public class MainActivity extends AppCompatActivity implements contentFragment.f
                     break;
                 }
                 else {
-                getSupportFragmentManager().beginTransaction().replace(R.id.fg, contentFragment.newInstance(current[0], current[1])).commit();
-                //ActionBar ab = getSupportActionBar();
-                ab.setTitle(current[0] + "년 " + current[1] + "월");
-                break;
-            }
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fg, contentFragment.newInstance(current[0], current[1])).commit();
+                    //ActionBar ab = getSupportActionBar();
+                    ab.setTitle(current[0] + "년 " + current[1] + "월");
+                    break;
+                }
             case R.id.action_weekactivity:
                 //fragmentManager.removeOnBackStackChangedListener();
                 //startActivity(new Intent(this,WeekActivity.class));

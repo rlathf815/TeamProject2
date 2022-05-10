@@ -5,7 +5,6 @@ public class weekItem {
     int day;
 
 
-
     weekItem(String schedule, int day) {
 
         this.schedule = schedule;
