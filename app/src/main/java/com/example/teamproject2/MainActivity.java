@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements contentFragment.f
         Fragment fg = fragmentManager.findFragmentById(R.id.fg);
         switch (item.getItemId()) {
             case R.id.action_monthactivity:
+                startActivity(new Intent(this,MainActivity.class));
                 if (wf != null) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.wf, contentFragment.newInstance(current[0], current[1])).commit();
                     //ActionBar ab = getSupportActionBar();
@@ -86,8 +87,9 @@ public class MainActivity extends AppCompatActivity implements contentFragment.f
                 }
             case R.id.action_weekactivity:
                 //fragmentManager.removeOnBackStackChangedListener();
-                //startActivity(new Intent(this,WeekActivity.class));
-                if (wf != null) {
+                startActivity(new Intent(this,WeekActivity.class));
+                return true;
+                /*if (wf != null) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.wf, WeekFragment.newInstance(current[0], current[1],current[2])).commit();
                     ab.setTitle(current[0] + "년 " + current[1] + "월");
                     break;
@@ -96,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements contentFragment.f
                     getSupportFragmentManager().beginTransaction().replace(R.id.fg, WeekFragment.newInstance(current[0], current[1],current[2])).commit();
                     ab.setTitle(current[0] + "년 " + current[1] + "월");
                     break;
-                }
+                }*/
         }
         return super.onOptionsItemSelected(item);
     }
