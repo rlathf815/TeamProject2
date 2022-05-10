@@ -72,7 +72,9 @@ public class MainActivity extends AppCompatActivity implements contentFragment.f
                 getSupportFragmentManager().beginTransaction().replace(R.id.fg, contentFragment.newInstance(current[0], current[1])).commit();
                 //ActionBar ab = getSupportActionBar();
                 ab.setTitle(current[0] + "년 " + current[1] + "월");
+
             case R.id.action_weekactivity:
+                //fragmentManager.removeOnBackStackChangedListener();
                 getSupportFragmentManager().beginTransaction().replace(R.id.fg, WeekFragment.newInstance(current[0], current[1])).commit();
                 ab.setTitle(current[0] + "년 " + current[1] + "월");
         }

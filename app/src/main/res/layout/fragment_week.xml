@@ -4,17 +4,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".WeekFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="20dp"
+        android:layout_height="match_parent"></ListView>
 
     <GridView
         android:id="@+id/weekGridview"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:animateLayoutChanges="false"
         android:animationCache="false"
-        android:gravity="center"
-
+        android:layout_gravity="right"
         android:numColumns="7"
-        android:drawSelectorOnTop="true"
-        />
 
+        />
+    </LinearLayout>
 </FrameLayout>

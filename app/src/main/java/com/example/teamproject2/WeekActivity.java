@@ -1,22 +1,42 @@
 package com.example.teamproject2;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.widget.ViewPager2;
 
 public class WeekActivity extends AppCompatActivity implements WeekFragment.wfragInterface{
     public static int[] current = new int[3];
+    public static Context mContext;
+    private ViewPager2 weekPager;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_week);
+        mContext = this;
+        weekPager = findViewById(R.id.weekPager);
+        FragmentStateAdapter adapter = new weekPagerAdapter(this);
+        weekPager.setAdapter(adapter);
+        weekPager.setCurrentItem(10,false);
+
+        String[] time={
+        "0", "1", "2", "3", "4", "5", "6", "7", "8","9","10","11", "12", "13", "14", "15","16","17","18","19","20", "21", "22", "23"};
+        ArrayAdapter<String> adapt =new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, time);
+        ListView list = (ListView) findViewById(R.id.listview);
+        list.setAdapter(adapt);
+
     }
 
     @Override

@@ -89,7 +89,7 @@ public class WeekFragment extends Fragment {
         info = mva.calcInfo(current);
         ArrayList<weekItem> data = new ArrayList<weekItem>();
         for (int i = 0; i<168; i++) {
-            data.add(new weekItem("","","",i));
+            data.add(new weekItem("",i));
         }
 
 

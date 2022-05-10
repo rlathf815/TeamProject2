@@ -55,14 +55,16 @@ public class weekGridviewAdapter extends BaseAdapter{
 
         convertView.setBackgroundResource(R.drawable.border);
         TextView tv_schedule1 = convertView.findViewById(R.id.week1);
-        tv_schedule1.setText(mItems.get(i).schedule1);
+        tv_schedule1.setText(mItems.get(i).schedule);
 
-        TextView tv_schedule2 = convertView.findViewById(R.id.week2);
-        tv_schedule2.setText(mItems.get(i).schedule2);
+        gridviewWidth = ((MainActivity)MainActivity.mContext).gridviewWidth;
+        //gridviewHeight = ((MainActivity)MainActivity.mContext).gridviewHeight;
+        int width = (gridviewWidth-20)/7;
+        //int height= (gridviewHeight-68)/6;
 
-        TextView tv_schedule3 = convertView.findViewById(R.id.week3);
-        tv_schedule3.setText(mItems.get(i).schedule3);
-
+        LinearLayout layout = convertView.findViewById(R.id.weekItem);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, 200);
+        layout.setLayoutParams(params);
         return convertView;
     }
 
