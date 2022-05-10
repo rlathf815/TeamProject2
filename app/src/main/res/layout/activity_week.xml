@@ -38,8 +38,9 @@
             <TextView
                 android:layout_width="20dp"
                 android:layout_height="match_parent"
+                android:hint="0"
                 android:layout_weight="1"
-                android:hint="0"/>
+                />
 
             <TextView
                 android:id="@+id/Sun"
