@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
@@ -45,17 +46,24 @@ public class WeekActivity extends AppCompatActivity implements WeekFragment.wfra
     public boolean onOptionsItemSelected(MenuItem item) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         ActionBar ab = getSupportActionBar();
+        Fragment wf = fragmentManager.findFragmentById(R.id.wf);
+        Fragment fg = fragmentManager.findFragmentById(R.id.fg);
         switch (item.getItemId()) {
             case R.id.action_monthactivity:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fg, contentFragment.newInstance(current[0], current[1])).commit();
-                ab.setTitle(current[0] + "년 " + current[1] + "월");
+                startActivity(new Intent(this,MainActivity.class));
                 return true;
             case R.id.action_weekactivity:
                 startActivity(new Intent(this,WeekActivity.class));
-                getSupportFragmentManager().beginTransaction().replace(R.id.fg, WeekFragment.newInstance(current[0], current[1],current[2])).commit();
-                ab.setTitle(current[0] + "년 " + current[1] + "월");
-
-                return true;
+                if (wf != null) {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.wf, WeekFragment.newInstance(current[0], current[1],current[2])).commit();
+                    ab.setTitle(current[0] + "년 " + current[1] + "월");
+                    break;
+                }
+                else {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fg, WeekFragment.newInstance(current[0], current[1],current[2])).commit();
+                    ab.setTitle(current[0] + "년 " + current[1] + "월");
+                    break;
+                }
         }
         return super.onOptionsItemSelected(item);
     }
