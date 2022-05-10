@@ -112,8 +112,26 @@ public class WeekFragment extends Fragment {
 
 
         info = mva.calcInfo(current);
+        int[] tmp = mva.calcCal();
+        int[]tmp2 = mva.calcInfo(tmp);
         int weekday = mva.calcWeekDay(current)-1;
         int startWeek = current[2] - weekday;
+        String[] ww = new String[7];
+        for(int i=0;i<7;i++)
+        {
+            if(startWeek+i>=1&&startWeek+i<=info[1])
+                ww[i]=String.valueOf(startWeek+i);
+            else if (startWeek+i<1) {
+                tmp[1]--;
+                tmp2=mva.calcInfo(tmp);
+                ww[i] = String.valueOf(startWeek+i+tmp2[1]);
+            }
+            else
+            {
+                tmp[1]++;
+                ww[i] = String.valueOf(startWeek+i-tmp2[1]);
+            }
+        }
         System.out.println("-------------------------------------------------------------------요일"+weekday);
 
         System.out.println("-------------------------------------------------------------------날짜"+current[2]);
@@ -124,13 +142,14 @@ public class WeekFragment extends Fragment {
         TextView tv5 = rootView.findViewById(R.id.day5);
         TextView tv6 = rootView.findViewById(R.id.day6);
         TextView tv7 = rootView.findViewById(R.id.day7);
-        tv1.setText(String.valueOf(startWeek));
-        tv2.setText(String.valueOf(startWeek+1));
-        tv3.setText(String.valueOf(startWeek+2));
-        tv4.setText(String.valueOf(startWeek+3));
-        tv5.setText(String.valueOf(startWeek+4));
-        tv6.setText(String.valueOf(startWeek+5));
-        tv7.setText(String.valueOf(startWeek+6));
+
+        tv1.setText(ww[0]);
+        tv2.setText(ww[1]);
+        tv3.setText(ww[2]);
+        tv4.setText(ww[3]);
+        tv5.setText(ww[4]);
+        tv6.setText(ww[5]);
+        tv7.setText(ww[6]);
         LinearLayout lo = rootView.findViewById(R.id.weekdaysLayout);
         int w = lo.getWidth()/7;
         tv1.setWidth(w);

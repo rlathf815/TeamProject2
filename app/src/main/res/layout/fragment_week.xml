@@ -45,7 +45,6 @@
                     android:gravity="center"
                     android:textColorHint="#000000"
 
-                    android:hint="1"
                     android:textColor="#000000"
                     android:textSize="@dimen/weekDays_textSize" />
 
@@ -57,7 +56,6 @@
                     android:layout_weight="1"
                     android:gravity="center"
 
-                    android:hint="2"
                     android:textColor="#000000"
 
                     android:textColorHint="#000000"
@@ -71,7 +69,6 @@
                     android:layout_weight="1"
                     android:gravity="center"
 
-                    android:hint="3"
                     android:textColor="#000000"
 
                     android:textColorHint="#000000"
@@ -84,7 +81,7 @@
                     android:layout_column="3"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:hint="4"
+
                     android:textColor="#000000"
 
                     android:textColorHint="#000000"
@@ -97,7 +94,6 @@
                     android:layout_column="4"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:hint="5"
                     android:textColor="#000000"
 
                     android:textColorHint="#000000"
@@ -110,7 +106,6 @@
                     android:layout_column="5"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:hint="6"
                     android:textColorHint="#000000"
                     android:textColor="#000000"
 
@@ -123,7 +118,6 @@
                     android:layout_column="6"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:hint="7"
                     android:textColorHint="#000000"
                     android:textColor="#000000"
 

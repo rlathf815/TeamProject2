@@ -23,9 +23,13 @@ public class weekPagerAdapter extends FragmentStateAdapter {
     {
         int[] current = mva.calcCal();
         int[] info =mva.calcInfo(current);
+        int weekday = mva.calcWeekDay(current)-1;
+        int startWeek = current[2] - weekday;
         if(position ==START_POS)
             return (current[0]*10000+current[1]*100+current[2]);
         int move = position - START_POS;
+
+
         if(current[2]+(move*7)<1)
         {
             current[1]--;
