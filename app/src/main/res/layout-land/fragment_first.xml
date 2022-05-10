@@ -13,7 +13,6 @@
         android:animateLayoutChanges="false"
         android:animationCache="false"
         android:gravity="center"
-
         android:numColumns="7"
         android:drawSelectorOnTop="true"
  />
