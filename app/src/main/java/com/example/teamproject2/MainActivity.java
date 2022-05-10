@@ -1,5 +1,7 @@
 package com.example.teamproject2;
 
+import static android.system.Os.remove;
+
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -24,7 +26,6 @@ public class MainActivity extends AppCompatActivity implements contentFragment.f
     public static int gridviewWidth, gridviewHeight;
     public static Context mContext;
     private ViewPager2 vpPager;
-
 
     //PagerAdapter fragmentViewPagerAdapter;
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,16 +68,35 @@ public class MainActivity extends AppCompatActivity implements contentFragment.f
     public boolean onOptionsItemSelected(MenuItem item) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         ActionBar ab = getSupportActionBar();
+        Fragment wf = fragmentManager.findFragmentById(R.id.wf);
+        Fragment fg = fragmentManager.findFragmentById(R.id.fg);
         switch (item.getItemId()) {
             case R.id.action_monthactivity:
+                if (wf != null) {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.wf, contentFragment.newInstance(current[0], current[1])).commit();
+                    //ActionBar ab = getSupportActionBar();
+                    ab.setTitle(current[0] + "년 " + current[1] + "월");
+                    break;
+                }
+                else {
                 getSupportFragmentManager().beginTransaction().replace(R.id.fg, contentFragment.newInstance(current[0], current[1])).commit();
                 //ActionBar ab = getSupportActionBar();
                 ab.setTitle(current[0] + "년 " + current[1] + "월");
-
+                break;
+            }
             case R.id.action_weekactivity:
                 //fragmentManager.removeOnBackStackChangedListener();
-                getSupportFragmentManager().beginTransaction().replace(R.id.fg, WeekFragment.newInstance(current[0], current[1])).commit();
-                ab.setTitle(current[0] + "년 " + current[1] + "월");
+                //startActivity(new Intent(this,WeekActivity.class));
+                if (wf != null) {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.wf, WeekFragment.newInstance(current[0], current[1])).commit();
+                    ab.setTitle(current[0] + "년 " + current[1] + "월");
+                    break;
+                }
+                else {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fg, WeekFragment.newInstance(current[0], current[1])).commit();
+                    ab.setTitle(current[0] + "년 " + current[1] + "월");
+                    break;
+                }
         }
         return super.onOptionsItemSelected(item);
     }

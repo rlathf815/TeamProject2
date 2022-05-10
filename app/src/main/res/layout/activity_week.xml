@@ -39,6 +39,9 @@
                 android:layout_width="20dp"
                 android:layout_height="match_parent"
                 android:hint="0"/>
+                android:hint="0"
+                android:layout_weight="1"
+                />
 
             <TextView
                 android:id="@+id/Sun"
