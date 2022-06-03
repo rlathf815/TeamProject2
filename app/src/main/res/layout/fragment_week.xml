@@ -4,34 +4,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".WeekFragment"
+    android:background="#CADFC1"
     android:id="@+id/wf">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
-
-        <ListView
-            android:id="@+id/listview"
-            android:layout_width="20dp"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:divider="#8B9C84"
-            android:dividerHeight="0.5dp"
-            android:textColor="#000000"
-            android:visibility="visible"
-            android:orientation="vertical"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            `<LinearLayout
+            <LinearLayout
                 android:id="@+id/weekdaysLayout"
                 android:layout_width="match_parent"
                 android:layout_height="153px"
                 android:background="#CADFC1"
                 android:columnCount="7"
+                android:layout_marginLeft="20dp"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal"
                 android:rowCount="1">
@@ -124,17 +111,37 @@
                     android:textSize="@dimen/weekDays_textSize" />
             </LinearLayout>`
 
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        <GridView
-            android:id="@+id/weekGridview"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:animateLayoutChanges="false"
-            android:animationCache="false"
-            android:layout_gravity="right"
-            android:numColumns="7"
-            />
-        </LinearLayout>
+            <LinearLayout
+                android:descendantFocusability="blocksDescendants"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ListView
+                    android:id="@+id/listview"
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:divider="#8B9C84"
+                    android:dividerHeight="0.8dp"
+                    android:textColor="#000000"
+                    android:visibility="visible"
+                    android:orientation="vertical"/>
 
+                <GridView
+                    android:id="@+id/weekGridview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:animateLayoutChanges="false"
+                    android:animationCache="false"
+                    android:layout_gravity="right"
+                    android:numColumns="7"
+                    />
+            </LinearLayout>
+
+            </androidx.core.widget.NestedScrollView>
     </LinearLayout>
 </FrameLayout>

@@ -40,10 +40,9 @@ public class listAdapter extends BaseAdapter {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(mResource, parent,false);
         }
-        System.out.println("--------------------------------왜ㅐ안대-------------" + (convertView == null));
+
         TextView tv = (TextView) convertView.findViewById(R.id.time);
-        System.out.println("--------------------------------왜ㅐ!!!!!!!!!!!!-------------" + (tv==null));
-      //  System.out.println("--------------------------------why-------------------------" + (mItems.get(position+1).time));
+
 
         tv.setText(mItems.get(position).time);
         tv.setHeight(152);

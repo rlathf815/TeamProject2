@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -67,6 +68,27 @@ public class WeekFragment extends Fragment {
         current[2]=mParam3;
 
     }
+    public static void setListViewHeightBasedOnChildren(ListView listView)
+    {
+        ListAdapter listAdapter = listView.getAdapter();
+        if(listAdapter==null)
+        {
+            return;
+        }
+        int totalHeight = 0;
+        for(int i=0;i<listAdapter.getCount();i++)
+        {
+            View listItem = listAdapter.getView(i,null,listView);
+            listItem.measure(0,0);
+            totalHeight += listItem.getMeasuredHeight();
+        }
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight+(listView.getDividerHeight()*(listAdapter.getCount()-1));
+        listView.setLayoutParams(params);
+        listView.requestLayout();
+
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -86,10 +108,12 @@ public class WeekFragment extends Fragment {
 
         }
 
+
         View rootView = inflater.inflate(R.layout.fragment_week, container, false);
         ArrayList<timeline> time = new ArrayList<timeline>();
-        //time.add(new timeline(""));
-        for(int i=0;i<=24;i+=2) time.add(new timeline(i));
+        for(int i=0;i<=24;i+=1) time.add(new timeline(i));
+        System.out.println("-------------------------------------------------------------------timeline 저장된 값: "+time.size());
+
         Ladapter=new listAdapter(getActivity().getApplicationContext(),R.layout.timeline,time);
         ListView list = (ListView) rootView.findViewById(R.id.listview);
         list.setAdapter(Ladapter);
@@ -109,7 +133,7 @@ public class WeekFragment extends Fragment {
             System.out.println("-------------------------------------------------------------------yearmonthInterface 성공여부" + (getActivity() instanceof contentFragment.fragInterface));
             ((WeekFragment.wfragInterface) getActivity()).setAppbar(current[0], current[1]);
         }
-
+        setListViewHeightBasedOnChildren(list);
 
         info = mva.calcInfo(current);
         int[] tmp = mva.calcCal();
@@ -162,7 +186,7 @@ public class WeekFragment extends Fragment {
 
 
         ArrayList<weekItem> data = new ArrayList<weekItem>();
-        for (int i = 0; i<84; i++) {
+        for (int i = 0; i<175; i++) {
             data.add(new weekItem("",i));
         }
         adapter = new weekGridviewAdapter(getActivity(), R.layout.schedule_layout, data);
