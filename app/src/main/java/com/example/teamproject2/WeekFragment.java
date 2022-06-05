@@ -218,63 +218,70 @@ public class WeekFragment extends Fragment {
 
                 switch (position%7) {
                     case 0:
-                        tv1.setBackgroundColor(Color.parseColor("#8B9C84"));
-                        tv2.setBackgroundColor(Color.parseColor("#CADFC1"));
-                        tv3.setBackgroundColor(Color.parseColor("#CADFC1"));
-                        tv4.setBackgroundColor(Color.parseColor("#CADFC1"));
-                        tv5.setBackgroundColor(Color.parseColor("#CADFC1"));
-                        tv6.setBackgroundColor(Color.parseColor("#CADFC1"));
-                        tv7.setBackgroundColor(Color.parseColor("#CADFC1"));
+                        tv1.setBackgroundColor(Color.parseColor("#616161"));
+                        tv1.setTextColor(Color.parseColor("#FAF7F5"));
+                        tv2.setBackgroundColor(Color.parseColor("#C2AEAE"));
+                        tv3.setBackgroundColor(Color.parseColor("#C2AEAE"));
+                        tv4.setBackgroundColor(Color.parseColor("#C2AEAE"));
+                        tv5.setBackgroundColor(Color.parseColor("#C2AEAE"));
+                        tv6.setBackgroundColor(Color.parseColor("#C2AEAE"));
+                        tv7.setBackgroundColor(Color.parseColor("#C2AEAE"));
                         break;
                     case 1:
-                        tv1.setBackgroundColor(Color.parseColor("#CADFC1"));
-                        tv2.setBackgroundColor(Color.parseColor("#8B9C84"));
-                        tv3.setBackgroundColor(Color.parseColor("#CADFC1"));
-                        tv4.setBackgroundColor(Color.parseColor("#CADFC1"));
-                        tv5.setBackgroundColor(Color.parseColor("#CADFC1"));
-                        tv6.setBackgroundColor(Color.parseColor("#CADFC1"));
-                        tv7.setBackgroundColor(Color.parseColor("#CADFC1"));                        break;
+                        tv1.setBackgroundColor(Color.parseColor("#C2AEAE"));
+                        tv2.setBackgroundColor(Color.parseColor("#616161"));
+                        tv2.setTextColor(Color.parseColor("#FAF7F5"));
+                        tv3.setBackgroundColor(Color.parseColor("#C2AEAE"));
+                        tv4.setBackgroundColor(Color.parseColor("#C2AEAE"));
+                        tv5.setBackgroundColor(Color.parseColor("#C2AEAE"));
+                        tv6.setBackgroundColor(Color.parseColor("#C2AEAE"));
+                        tv7.setBackgroundColor(Color.parseColor("#C2AEAE"));                        break;
                     case 2:
-                        tv1.setBackgroundColor(Color.parseColor("#CADFC1"));
-                        tv2.setBackgroundColor(Color.parseColor("#CADFC1"));
-                        tv3.setBackgroundColor(Color.parseColor("#8B9C84"));
-                        tv4.setBackgroundColor(Color.parseColor("#CADFC1"));
-                        tv5.setBackgroundColor(Color.parseColor("#CADFC1"));
-                        tv6.setBackgroundColor(Color.parseColor("#CADFC1"));
-                        tv7.setBackgroundColor(Color.parseColor("#CADFC1"));
+                        tv1.setBackgroundColor(Color.parseColor("#C2AEAE"));
+                        tv2.setBackgroundColor(Color.parseColor("#C2AEAE"));
+                        tv3.setBackgroundColor(Color.parseColor("#616161"));
+                        tv3.setTextColor(Color.parseColor("#FAF7F5"));
+                        tv4.setBackgroundColor(Color.parseColor("#C2AEAE"));
+                        tv5.setBackgroundColor(Color.parseColor("#C2AEAE"));
+                        tv6.setBackgroundColor(Color.parseColor("#C2AEAE"));
+                        tv7.setBackgroundColor(Color.parseColor("#C2AEAE"));
                         break;
                     case 3:
-                        tv1.setBackgroundColor(Color.parseColor("#CADFC1"));
-                        tv2.setBackgroundColor(Color.parseColor("#CADFC1"));
-                        tv3.setBackgroundColor(Color.parseColor("#CADFC1"));
-                        tv4.setBackgroundColor(Color.parseColor("#8B9C84"));
-                        tv5.setBackgroundColor(Color.parseColor("#CADFC1"));
-                        tv6.setBackgroundColor(Color.parseColor("#CADFC1"));
-                        tv7.setBackgroundColor(Color.parseColor("#CADFC1"));                        break;
+                        tv1.setBackgroundColor(Color.parseColor("#C2AEAE"));
+                        tv2.setBackgroundColor(Color.parseColor("#C2AEAE"));
+                        tv3.setBackgroundColor(Color.parseColor("#C2AEAE"));
+                        tv4.setBackgroundColor(Color.parseColor("#616161"));
+                        tv4.setTextColor(Color.parseColor("#FAF7F5"));
+                        tv5.setBackgroundColor(Color.parseColor("#C2AEAE"));
+                        tv6.setBackgroundColor(Color.parseColor("#C2AEAE"));
+                        tv7.setBackgroundColor(Color.parseColor("#C2AEAE"));                        break;
                     case 4:
-                        tv1.setBackgroundColor(Color.parseColor("#CADFC1"));
-                        tv2.setBackgroundColor(Color.parseColor("#CADFC1"));
-                        tv3.setBackgroundColor(Color.parseColor("#CADFC1"));
-                        tv4.setBackgroundColor(Color.parseColor("#CADFC1"));
-                        tv5.setBackgroundColor(Color.parseColor("#8B9C84"));
-                        tv6.setBackgroundColor(Color.parseColor("#CADFC1"));
-                        tv7.setBackgroundColor(Color.parseColor("#CADFC1"));                        break;
+                        tv1.setBackgroundColor(Color.parseColor("#C2AEAE"));
+                        tv2.setBackgroundColor(Color.parseColor("#C2AEAE"));
+                        tv3.setBackgroundColor(Color.parseColor("#C2AEAE"));
+                        tv4.setBackgroundColor(Color.parseColor("#C2AEAE"));
+                        tv5.setBackgroundColor(Color.parseColor("#616161"));
+                        tv5.setTextColor(Color.parseColor("#FAF7F5"));
+                        tv6.setBackgroundColor(Color.parseColor("#C2AEAE"));
+                        tv7.setBackgroundColor(Color.parseColor("#C2AEAE"));                        break;
                     case 5:
-                        tv1.setBackgroundColor(Color.parseColor("#CADFC1"));
-                        tv2.setBackgroundColor(Color.parseColor("#CADFC1"));
-                        tv3.setBackgroundColor(Color.parseColor("#CADFC1"));
-                        tv4.setBackgroundColor(Color.parseColor("#CADFC1"));
-                        tv5.setBackgroundColor(Color.parseColor("#CADFC1"));
-                        tv6.setBackgroundColor(Color.parseColor("#8B9C84"));
-                        tv7.setBackgroundColor(Color.parseColor("#CADFC1"));                        break;
+                        tv1.setBackgroundColor(Color.parseColor("#C2AEAE"));
+                        tv2.setBackgroundColor(Color.parseColor("#C2AEAE"));
+                        tv3.setBackgroundColor(Color.parseColor("#C2AEAE"));
+                        tv4.setBackgroundColor(Color.parseColor("#C2AEAE"));
+                        tv5.setBackgroundColor(Color.parseColor("#C2AEAE"));
+                        tv6.setBackgroundColor(Color.parseColor("#616161"));
+                        tv6.setTextColor(Color.parseColor("#FAF7F5"));
+                        tv7.setBackgroundColor(Color.parseColor("#C2AEAE"));                        break;
                     case 6:
-                        tv1.setBackgroundColor(Color.parseColor("#CADFC1"));
-                        tv2.setBackgroundColor(Color.parseColor("#CADFC1"));
-                        tv3.setBackgroundColor(Color.parseColor("#CADFC1"));
-                        tv4.setBackgroundColor(Color.parseColor("#CADFC1"));
-                        tv5.setBackgroundColor(Color.parseColor("#CADFC1"));
-                        tv6.setBackgroundColor(Color.parseColor("#CADFC1"));
-                        tv7.setBackgroundColor(Color.parseColor("#8B9C84"));
+                        tv1.setBackgroundColor(Color.parseColor("#C2AEAE"));
+                        tv2.setBackgroundColor(Color.parseColor("#C2AEAE"));
+                        tv3.setBackgroundColor(Color.parseColor("#C2AEAE"));
+                        tv4.setBackgroundColor(Color.parseColor("#C2AEAE"));
+                        tv5.setBackgroundColor(Color.parseColor("#C2AEAE"));
+                        tv6.setBackgroundColor(Color.parseColor("#C2AEAE"));
+                        tv7.setBackgroundColor(Color.parseColor("#616161"));
+                        tv7.setTextColor(Color.parseColor("#FAF7F5"));
                         break;
 
 

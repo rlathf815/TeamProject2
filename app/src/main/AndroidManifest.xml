@@ -20,6 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name="com.example.teamproject2.WeekActivity"></activity>
+        <activity android:name="com.example.teamproject2.ScheduleActivity"></activity>
     </application>
 
 </manifest>

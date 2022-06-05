@@ -10,6 +10,12 @@
     <color name="darkPink">#C64D6B</color>
     <color name="bblue">#206DAB</color>
     <color name="grreen">#8B9C84</color>
+    <color name="darkest">#616161</color>
+    <color name="whiteLike">#FAF7F5</color>
+    <color name="lightCol">#F0E1DF</color>
+    <color name="darkerCol">#C2AEAE</color>
+    <color name="highlight">#FAEDF4</color>
+
 
 
 </resources>

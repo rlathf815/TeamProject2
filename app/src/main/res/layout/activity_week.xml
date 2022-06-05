@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_weight="1"
-    android:background="#8B9C84"
+    android:background="@color/darkest"
     android:orientation="vertical">
 
 
@@ -11,7 +11,7 @@
         android:id="@+id/weekdaysLayout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/weekdays_height"
-        android:background="#8B9C84"
+        android:background="@color/darkest"
         android:columnCount="7"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
@@ -26,7 +26,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:hint="@string/Sun"
-            android:textColorHint="#FFFBFF"
+            android:textColorHint="@color/whiteLike"
             android:textSize="@dimen/weekDays_textSize" />
 
         <TextView
@@ -39,7 +39,7 @@
 
             android:hint="@string/Mon"
 
-            android:textColorHint="#FFFBFF"
+            android:textColorHint="@color/whiteLike"
             android:textSize="@dimen/weekDays_textSize" />
 
         <TextView
@@ -52,7 +52,7 @@
 
             android:hint="@string/Tue"
 
-            android:textColorHint="#FFFBFF"
+            android:textColorHint="@color/whiteLike"
             android:textSize="@dimen/weekDays_textSize" />
 
         <TextView
@@ -64,7 +64,7 @@
             android:gravity="center"
             android:hint="@string/Wed"
 
-            android:textColorHint="#FFFBFF"
+            android:textColorHint="@color/whiteLike"
             android:textSize="@dimen/weekDays_textSize" />
 
         <TextView
@@ -76,7 +76,7 @@
             android:gravity="center"
             android:hint="@string/Thu"
 
-            android:textColorHint="#FFFBFF"
+            android:textColorHint="@color/whiteLike"
             android:textSize="@dimen/weekDays_textSize" />
 
         <TextView
@@ -87,7 +87,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:hint="@string/Fri"
-            android:textColorHint="#FFFBFF"
+            android:textColorHint="@color/whiteLike"
 
             android:textSize="@dimen/weekDays_textSize" />
 
@@ -99,7 +99,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:hint="@string/Sat"
-            android:textColorHint="#FFFBFF"
+            android:textColorHint="@color/whiteLike"
 
             android:textSize="@dimen/weekDays_textSize" />
     </LinearLayout>

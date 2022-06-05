@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".WeekFragment"
-    android:background="#CADFC1"
+    android:background="@color/lightCol"
     android:id="@+id/wf">
 
         <LinearLayout
@@ -16,7 +16,7 @@
                 android:id="@+id/weekdaysLayout"
                 android:layout_width="match_parent"
                 android:layout_height="153px"
-                android:background="#CADFC1"
+                android:background="@color/darkerCol"
                 android:columnCount="7"
                 android:layout_marginLeft="20dp"
                 android:gravity="center_horizontal"
@@ -30,9 +30,9 @@
                     android:layout_column="0"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:textColorHint="#000000"
+                    android:textColorHint="@color/darkest"
 
-                    android:textColor="#000000"
+                    android:textColor="@color/darkest"
                     android:textSize="@dimen/weekDays_textSize" />
 
                 <TextView
@@ -43,9 +43,9 @@
                     android:layout_weight="1"
                     android:gravity="center"
 
-                    android:textColor="#000000"
+                    android:textColor="@color/darkest"
 
-                    android:textColorHint="#000000"
+                    android:textColorHint="@color/darkest"
                     android:textSize="@dimen/weekDays_textSize" />
 
                 <TextView
@@ -56,9 +56,9 @@
                     android:layout_weight="1"
                     android:gravity="center"
 
-                    android:textColor="#000000"
+                    android:textColor="@color/darkest"
 
-                    android:textColorHint="#000000"
+                    android:textColorHint="@color/darkest"
                     android:textSize="@dimen/weekDays_textSize" />
 
                 <TextView
@@ -69,9 +69,9 @@
                     android:layout_weight="1"
                     android:gravity="center"
 
-                    android:textColor="#000000"
+                    android:textColor="@color/darkest"
 
-                    android:textColorHint="#000000"
+                    android:textColorHint="@color/darkest"
                     android:textSize="@dimen/weekDays_textSize" />
 
                 <TextView
@@ -81,9 +81,9 @@
                     android:layout_column="4"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:textColor="#000000"
+                    android:textColor="@color/darkest"
 
-                    android:textColorHint="#000000"
+                    android:textColorHint="@color/darkest"
                     android:textSize="@dimen/weekDays_textSize" />
 
                 <TextView
@@ -93,8 +93,8 @@
                     android:layout_column="5"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:textColorHint="#000000"
-                    android:textColor="#000000"
+                    android:textColorHint="@color/darkest"
+                    android:textColor="@color/darkest"
 
                     android:textSize="@dimen/weekDays_textSize" />
 
@@ -105,8 +105,8 @@
                     android:layout_column="6"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:textColorHint="#000000"
-                    android:textColor="#000000"
+                    android:textColorHint="@color/darkest"
+                    android:textColor="@color/darkest"
 
                     android:textSize="@dimen/weekDays_textSize" />
             </LinearLayout>`
@@ -124,10 +124,10 @@
                     android:id="@+id/listview"
                     android:layout_width="20dp"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:divider="#8B9C84"
+                    android:background="@color/highlight"
+                    android:divider="@color/darkest"
                     android:dividerHeight="0.8dp"
-                    android:textColor="#000000"
+                    android:textColor="@color/darkest"
                     android:visibility="visible"
                     android:orientation="vertical"/>
 

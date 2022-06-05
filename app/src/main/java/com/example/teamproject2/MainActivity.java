@@ -16,9 +16,13 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 
 public class MainActivity extends AppCompatActivity implements contentFragment.fragInterface {
@@ -26,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements contentFragment.f
     public static int gridviewWidth, gridviewHeight;
     public static Context mContext;
     private ViewPager2 vpPager;
-
+    private FloatingActionButton fab;
     //PagerAdapter fragmentViewPagerAdapter;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +41,15 @@ public class MainActivity extends AppCompatActivity implements contentFragment.f
         FragmentStateAdapter adapter = new PagerAdapter(this);
         vpPager.setAdapter(adapter);
         vpPager.setCurrentItem(10,false);
+        fab = findViewById(R.id.fab_btn);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "일정추가",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), ScheduleActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
