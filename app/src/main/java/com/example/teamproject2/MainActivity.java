@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements contentFragment.f
     public static Context mContext;
     private ViewPager2 vpPager;
     private FloatingActionButton fab;
+    public boolean clicked = false;
     //PagerAdapter fragmentViewPagerAdapter;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,9 +46,15 @@ public class MainActivity extends AppCompatActivity implements contentFragment.f
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "일정추가",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), ScheduleActivity.class);
-                startActivity(intent);
+                //Toast.makeText(MainActivity.this, "일정추가",Toast.LENGTH_SHORT).show();
+                if(clicked==true)
+                {
+                    Intent intent = new Intent(getApplicationContext(), ScheduleActivity.class);
+                    startActivity(intent);
+                }
+                else
+                    Toast.makeText(MainActivity.this, "날짜를 선택해주세요",Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -57,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements contentFragment.f
     public void onDateSelected(String year, String month, String date) {
         Toast.makeText(MainActivity.this, year + "." + month + "." + date,
                 Toast.LENGTH_SHORT).show();
+        clicked = true;
     }
     public void getYearMonth(int year, int month, int day)
     {
