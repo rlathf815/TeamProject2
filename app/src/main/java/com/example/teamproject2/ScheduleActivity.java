@@ -106,36 +106,42 @@ public class ScheduleActivity extends AppCompatActivity implements OnMapReadyCal
             @Override
             public void onClick(View v){
                 String setText = Text.getText().toString();
-                List<Address> addresses = null;
+                List<Address> state = null;
                 try {
-                    addresses = geocoder.getFromLocationName(setText, 10);
+                    state = geocoder.getFromLocationName(setText, 10);
                 }
                 catch (IOException e) {
                     e.printStackTrace();
                 }
 
-                System.out.println(addresses.get(0).toString());
-                String []splitStr = addresses.get(0).toString().split(",");
-                String address = splitStr[0].substring(splitStr[0].indexOf("\"") + 1,splitStr[0].length() - 2); // 주소
-                System.out.println(address);
+                if (state.size() != 0) {
+                    System.out.println(state.get(0).toString());
+                    String[] splitStr = state.get(0).toString().split(",");
+                    String address = splitStr[0].substring(splitStr[0].indexOf("\"") + 1, splitStr[0].length() - 2); // 주소
+                    System.out.println(address);
 
-                String latitude = splitStr[10].substring(splitStr[10].indexOf("=") + 1); // 위도
-                String longitude = splitStr[12].substring(splitStr[12].indexOf("=") + 1); // 경도
-                System.out.println(latitude);
-                System.out.println(longitude);
+                    String latitude = splitStr[10].substring(splitStr[10].indexOf("=") + 1); // 위도
+                    String longitude = splitStr[12].substring(splitStr[12].indexOf("=") + 1); // 경도
+                    System.out.println(latitude);
+                    System.out.println(longitude);
 
-                LatLng point = new LatLng(Double.parseDouble(latitude), Double.parseDouble(longitude));
-                MarkerOptions mOptions2 = new MarkerOptions();
-                mOptions2.title("search result");
-                mOptions2.snippet(address);
-                mOptions2.position(point);
-                mMap.addMarker(mOptions2);
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(point,15));
+                    LatLng point = new LatLng(Double.parseDouble(latitude), Double.parseDouble(longitude));
+                    MarkerOptions mOptions2 = new MarkerOptions();
+                    mOptions2.title("search result");
+                    mOptions2.snippet(address);
+                    mOptions2.position(point);
+                    mMap.addMarker(mOptions2);
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(point, 15));
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "다시 입력", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
         LatLng seoul = new LatLng(37.5666, 126.9784);
         mMap.addMarker(new MarkerOptions().position(seoul).title("Seoul"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(seoul));
+
     }
 }
