@@ -11,7 +11,7 @@ public class ScheduleContract {
 
     public static class Schedules implements BaseColumns {
         public static final String TABLE_NAME = "Schedules";
-        public static final int KEY_DATE = 20220606;
+        public static final String KEY_DATE = "date";
         public static final String KEY_TITLE = "Title";
         public static final String KEY_START = "Start_time";
         public static final String KEY_FIN = "Finish_time";

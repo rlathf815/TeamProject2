@@ -16,7 +16,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAmur-1_EHQvot3_8Ft1k5sjHgnTICrQQQ" />
         <activity
-            android:name=".MainActivity"
+            android:name=".MonthActivity"
             android:exported="true"
             android:configChanges="orientation|screenSize|keyboardHidden">
             <intent-filter>

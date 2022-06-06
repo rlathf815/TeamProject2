@@ -7,14 +7,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
@@ -76,7 +72,7 @@ public class WeekActivity extends AppCompatActivity implements WeekFragment.wfra
         Fragment fg = fragmentManager.findFragmentById(R.id.fg);
         switch (item.getItemId()) {
             case R.id.action_monthactivity:
-                startActivity(new Intent(this,MainActivity.class));
+                startActivity(new Intent(this, MonthActivity.class));
                 return true;
             case R.id.action_weekactivity:
                 startActivity(new Intent(this,WeekActivity.class));

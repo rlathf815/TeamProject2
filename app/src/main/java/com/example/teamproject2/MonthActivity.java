@@ -10,6 +10,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,7 +20,7 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 
-public class MainActivity extends AppCompatActivity implements MonthFragment.fragInterface {
+public class MonthActivity extends AppCompatActivity implements MonthFragment.fragInterface {
     public static int[] current = new int[3];
     public static int gridviewWidth, gridviewHeight;
     public static Context mContext;
@@ -28,7 +29,8 @@ public class MainActivity extends AppCompatActivity implements MonthFragment.fra
     public boolean clicked = false;
     public String[] selectedDate = new String[3];
     private DBHelper mDBHelper;
-
+    public View pressedView;
+    public String title;
     //PagerAdapter fragmentViewPagerAdapter;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,20 +53,24 @@ public class MainActivity extends AppCompatActivity implements MonthFragment.fra
                     intent.putExtra("year",selectedDate[0]);
                     intent.putExtra("month",selectedDate[1]);
                     intent.putExtra("day",selectedDate[2]);
-
+                    //intent.putExtra("view", (Parcelable) pressedView);
                     startActivity(intent);
                 }
                 else
-                    Toast.makeText(MainActivity.this, "날짜를 선택해주세요",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MonthActivity.this, "날짜를 선택해주세요",Toast.LENGTH_SHORT).show();
 
             }
         });
-
+        Intent getIntent = getIntent();
+        title = getIntent.getStringExtra("title");
+        System.out.println("000000000000000000000000000000  받은title값 "+title);
+        //FragmentManager fragmentManager = getSupportFragmentManager();
+        MonthFragment frag = MonthFragment.newInstance(current[0],current[1],title);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragpos, frag).commit();
     }
 
-
     public void onDateSelected(String year, String month, String date) {
-        Toast.makeText(MainActivity.this, year + "." + month + "." + date,
+        Toast.makeText(MonthActivity.this, year + "." + month + "." + date,
                 Toast.LENGTH_SHORT).show();
         clicked = true;
         selectedDate[0] = year;
@@ -98,15 +104,26 @@ public class MainActivity extends AppCompatActivity implements MonthFragment.fra
         Fragment fg = fragmentManager.findFragmentById(R.id.fg);
         switch (item.getItemId()) {
             case R.id.action_monthactivity:
-                startActivity(new Intent(this,MainActivity.class));
+                startActivity(new Intent(this, MonthActivity.class));
                 if (wf != null) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.wf, MonthFragment.newInstance(current[0], current[1])).commit();
+                    if (title != null){
+                        getSupportFragmentManager().beginTransaction().replace(R.id.wf, MonthFragment.newInstance(current[0], current[1], title)).commit();
+                        System.out.println("------------title호출--------");
+                     }
+                    else
+                        getSupportFragmentManager().beginTransaction().replace(R.id.wf, MonthFragment.newInstance(current[0], current[1])).commit();
+
                     //ActionBar ab = getSupportActionBar();
                     ab.setTitle(current[0] + "년 " + current[1] + "월");
                     break;
                 }
                 else {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fg, MonthFragment.newInstance(current[0], current[1])).commit();
+                    if(title!=null) {
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fg, MonthFragment.newInstance(current[0], current[1], title)).commit();
+                    }
+                    else
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fg, MonthFragment.newInstance(current[0], current[1])).commit();
+
                     //ActionBar ab = getSupportActionBar();
                     ab.setTitle(current[0] + "년 " + current[1] + "월");
                     break;

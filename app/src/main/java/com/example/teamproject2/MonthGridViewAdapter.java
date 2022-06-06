@@ -1,8 +1,6 @@
 package com.example.teamproject2;
 
-import android.app.Activity;
 import android.content.Context;
-import android.database.Cursor;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +17,7 @@ public class MonthGridViewAdapter extends BaseAdapter{
     private Context mContext;
     private int mResource;
     public static int gridviewWidth, gridviewHeight;
-    MainActivity act = new MainActivity();
+    MonthActivity act = new MonthActivity();
     private DBHelper mDBHelper;
 
     public MonthGridViewAdapter(Context context, int resource, ArrayList<item> items)
@@ -80,19 +78,12 @@ public class MonthGridViewAdapter extends BaseAdapter{
             tv_day.setBackgroundColor(Color.rgb(222,182,174));
             tv_day.setTextColor(Color.WHITE);
         }
-        Cursor cursor = mDBHelper.getAllSchBySQL();
-        int date = (10000*year);
-        while(cursor.moveToNext())
-        {
-            if (cursor.getInt(1)==1){
-            }
-        }
+
+
         int j=0;
 
         while(true)
         {
-            System.out.println("-------------------------------------------------------------------j="+j+" day="+mItems.get(j).day);
-
             if(mItems.get(j).day!=" ")
                 break;
             j++;
@@ -108,8 +99,8 @@ public class MonthGridViewAdapter extends BaseAdapter{
             if(String.valueOf(k).equals(mItems.get(i).day))
                 tv_day.setTextColor(Color.rgb(32,109,171));
         }
-        gridviewWidth = ((MainActivity)MainActivity.mContext).gridviewWidth;
-        gridviewHeight = ((MainActivity)MainActivity.mContext).gridviewHeight;
+        gridviewWidth = ((MonthActivity) MonthActivity.mContext).gridviewWidth;
+        gridviewHeight = ((MonthActivity) MonthActivity.mContext).gridviewHeight;
         int width = gridviewWidth/7;
         int height= (gridviewHeight-68)/6;
 

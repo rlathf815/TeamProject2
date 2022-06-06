@@ -1,8 +1,6 @@
 package com.example.teamproject2;
 
-import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +9,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 
 public class weekGridviewAdapter extends BaseAdapter{
     private ArrayList<weekItem> mItems = new ArrayList<weekItem>();
@@ -56,7 +53,7 @@ public class weekGridviewAdapter extends BaseAdapter{
         convertView.setBackgroundResource(R.drawable.border);
         TextView tv_schedule1 = convertView.findViewById(R.id.week1);
         tv_schedule1.setText(mItems.get(i).schedule);
-        gridviewWidth = ((MainActivity)MainActivity.mContext).gridviewWidth;
+        gridviewWidth = ((MonthActivity) MonthActivity.mContext).gridviewWidth;
 
         int width = (gridviewWidth-20)/7;
         int height = (gridviewHeight-240)/12;
