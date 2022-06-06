@@ -95,41 +95,22 @@ public class WeekActivity extends AppCompatActivity implements WeekFragment.wfra
     }
     public void onPosSelected(int pos) {
         System.out.println("-------------------------------------------------------------------weekActivity onposselected-position"+pos);
-        Toast.makeText(WeekActivity.this, "pos="+String.valueOf(pos),Toast.LENGTH_SHORT).show();
+        //Toast.makeText(WeekActivity.this, "pos="+String.valueOf(pos),Toast.LENGTH_SHORT).show();
         clicked = true;
         MonthCalc mva = new MonthCalc();
+        int[] tmp = mva.calcInfo(current);
         int weekday = mva.calcWeekDay(current)-1;
         int startWeek = current[2] - weekday;
         selectedDateTime[0]= String.valueOf(current[0]);
         selectedDateTime[1]= String.valueOf(current[1]);
         selectedDateTime[3]= String.valueOf(pos/7);
-        switch (pos%7)
-        {
-            case 0:
-                selectedDateTime[2]=String.valueOf(startWeek);
-                break;
-            case 1:
-                selectedDateTime[2]=String.valueOf(startWeek+1);
-                break;
-            case 2:
-                selectedDateTime[2]=String.valueOf(startWeek+2);
-                break;
-            case 3:
-                selectedDateTime[2]=String.valueOf(startWeek+3);
-                break;
-            case 4:
-                selectedDateTime[2]=String.valueOf(startWeek+4);
-                break;
-            case 5:
-                selectedDateTime[2]=String.valueOf(startWeek+5);
-                break;
-            case 6:
-                selectedDateTime[2]=String.valueOf(startWeek+6);
-                break;
+        int i=pos%7;
+        if(startWeek+i<=tmp[1])
+            selectedDateTime[2]=String.valueOf(startWeek+i);
+        else {
+            selectedDateTime[2] = String.valueOf(startWeek + i - tmp[1]);
+            selectedDateTime[1] = String.valueOf(current[1]+1);
         }
-
-
-
     }
     @Override
     public void getYearMonth(int year, int month, int day) {
