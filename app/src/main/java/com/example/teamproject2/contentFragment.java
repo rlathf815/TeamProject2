@@ -94,13 +94,13 @@ public class contentFragment extends Fragment {
         //(setYearMonth(current[0],current[1]);
         ArrayList<item> data = new ArrayList<item>();
         for (int i = 0; i < info[0] - 1; i++) {
-            data.add(new item(" ", "", "", "", current[1]));
+            data.add(new item(" ", "", "", current[1]));
         }
         for (int i = 0; i < info[1]; i++) {
-            data.add(new item("" + (i + 1), "", "", "", current[1]));
+            data.add(new item("" + (i + 1), "", "", current[1]));
         }
         for (int i = 0; i < (43 - (info[0] + info[1])); i++) {
-            data.add(new item(" ", "", "", "", current[1]));
+            data.add(new item(" ", "", "", current[1]));
         }
 
         GridView gridView = rootView.findViewById(R.id.gridview);

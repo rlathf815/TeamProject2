@@ -1,28 +1,16 @@
 package com.example.teamproject2;
 
-import android.content.Context;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.Toast;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
-import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -38,15 +26,24 @@ public class ScheduleActivity extends AppCompatActivity implements OnMapReadyCal
 
         private GoogleMap mMap;
         private Geocoder geocoder;
-        private Button button;
-        private EditText Text;
+        private Button searchBtn, saveBtn, cancelBtn, delBtn;
+        private EditText searchTxt, title, memo;
+        private DBHelper mDBHelper;
+        public String StartTime, FinTime;
 
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.add_schedule);
 
-            Text = (EditText) findViewById(R.id.searchTxt);
-            button = (Button)findViewById(R.id.searchBtn);
+            title = (EditText)findViewById(R.id.title);
+            searchTxt = (EditText) findViewById(R.id.searchTxt);
+            memo = (EditText) findViewById(R.id.memo);
+            searchBtn = (Button)findViewById(R.id.searchBtn);
+            saveBtn = (Button)findViewById(R.id.saveBtn);
+            cancelBtn = (Button)findViewById(R.id.cancelBtn);
+            delBtn = (Button)findViewById(R.id.delBtn);
+
+            mDBHelper = new DBHelper(this);
 
             SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
             mapFragment.getMapAsync(this);
@@ -74,14 +71,29 @@ public class ScheduleActivity extends AppCompatActivity implements OnMapReadyCal
             String day = intent.getStringExtra("day");
             String time = intent.getStringExtra("time");
 
-            EditText title = (EditText)findViewById(R.id.title);
             if(time == null)
                 title.setText(year+"년 "+month+"월 "+day+"일");
             else
                 title.setText(year+"년 "+month+"월 "+day+"일 "+time+"시");
 
-        }
+            saveBtn.setOnClickListener(new View.OnClickListener(){
+                public void onClick(View view){
+                    int SThour = SThourpicker.getValue();
+                    int STmin = STminpicker.getValue();
+                    int FINhour = FINhourpicker.getValue();
+                    int FINmin = FINminpicker.getValue();
+                    StartTime = SThour+"시 "+STmin+"분";
+                    FinTime = FINhour+"시 "+FINmin+"분";
+                    insertRecord();
 
+                }
+            });
+
+        }
+    private void insertRecord() {
+        mDBHelper.insertSchBySQL(title.getText().toString(), StartTime, FinTime, searchTxt.getText().toString(), memo.getText().toString());
+        System.out.println("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm inserted?"+StartTime);
+    }
 
     public void onMapReady(final GoogleMap googleMap) {
         mMap = googleMap;
@@ -102,10 +114,10 @@ public class ScheduleActivity extends AppCompatActivity implements OnMapReadyCal
             }
         });
 
-        button.setOnClickListener(new Button.OnClickListener(){
+        searchBtn.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View v){
-                String setText = Text.getText().toString();
+                String setText = searchTxt.getText().toString();
                 List<Address> state = null;
                 try {
                     state = geocoder.getFromLocationName(setText, 10);

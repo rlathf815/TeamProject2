@@ -64,9 +64,6 @@ public class MyGridViewAdapter extends BaseAdapter{
         TextView tv_schedule2 = convertView.findViewById(R.id.textView_schedule2);
         tv_schedule2.setText(mItems.get(i).schedule2);
 
-        TextView tv_schedule3 = convertView.findViewById(R.id.textView_schedule3);
-        tv_schedule3.setText(mItems.get(i).schedule3);
-
         Calendar mCal = Calendar.getInstance();
 
         int td = mCal.get(Calendar.DAY_OF_WEEK);

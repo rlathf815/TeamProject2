@@ -9,7 +9,7 @@ public class ScheduleContract {
     private static final String COMMA_SEP = ",";
     private ScheduleContract() {}
 
-    public static class Users implements BaseColumns {
+    public static class Schedules implements BaseColumns {
         public static final String TABLE_NAME = "Schedules";
         public static final String KEY_TITLE = "Title";
         public static final String KEY_START = "Start_time";
