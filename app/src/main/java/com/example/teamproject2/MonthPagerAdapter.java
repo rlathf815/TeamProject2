@@ -4,17 +4,14 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import java.util.ArrayList;
-
-public class PagerAdapter extends FragmentStateAdapter {
+public class MonthPagerAdapter extends FragmentStateAdapter {
     //private static int NUM_ITEMS=3;
     private int START_POS =10;
 
     MonthCalc mva = new MonthCalc();
-    public PagerAdapter(FragmentActivity fa) {
+    public MonthPagerAdapter(FragmentActivity fa) {
         super(fa);
     }
     @Override
@@ -52,7 +49,7 @@ public class PagerAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position)
     {
         long itemID = getItemId(position);
-        contentFragment fg = new contentFragment();
+        MonthFragment fg = new MonthFragment();
         Bundle args = new Bundle();
         args.putLong("yearMonth",itemID);
         fg.setArguments(args);

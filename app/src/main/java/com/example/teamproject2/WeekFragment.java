@@ -1,6 +1,5 @@
 package com.example.teamproject2;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -11,13 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -130,7 +127,7 @@ public class WeekFragment extends Fragment {
 
         if (getActivity() instanceof WeekFragment.wfragInterface) {
             ((WeekFragment.wfragInterface) getActivity()).getYearMonth(current[0], current[1], current[2]);
-            System.out.println("-------------------------------------------------------------------yearmonthInterface 성공여부" + (getActivity() instanceof contentFragment.fragInterface));
+            System.out.println("-------------------------------------------------------------------yearmonthInterface 성공여부" + (getActivity() instanceof MonthFragment.fragInterface));
             ((WeekFragment.wfragInterface) getActivity()).setAppbar(current[0], current[1]);
         }
         setListViewHeightBasedOnChildren(list);

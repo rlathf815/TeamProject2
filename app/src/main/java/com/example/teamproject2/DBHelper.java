@@ -28,18 +28,19 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(ScheduleContract.Schedules.DELETE_TABLE);
         onCreate(db);
     }
-    public void insertSchBySQL(String title, String start, String fin, String loc, String memo) {
+    public void insertSchBySQL(String date, String title, String start, String fin, String loc, String memo) {
         try {
             String sql = String.format (
-                    "INSERT INTO %s (%s, %s, %s, %s, %s, %s) VALUES (NULL, '%s', '%s', '%s', '%s', '%s')",
+                    "INSERT INTO %s (%s, %s, %s, %s, %s, %s, %s) VALUES (NULL, '%s', '%s', '%s', '%s', '%s', '%s')",
                     ScheduleContract.Schedules.TABLE_NAME,
                     ScheduleContract.Schedules._ID,
+                    ScheduleContract.Schedules.KEY_DATE,
                     ScheduleContract.Schedules.KEY_TITLE,
                     ScheduleContract.Schedules.KEY_START,
                     ScheduleContract.Schedules.KEY_FIN,
                     ScheduleContract.Schedules.KEY_LOC,
                     ScheduleContract.Schedules.KEY_MEMO,
-                    title, start, fin, loc, memo);
+                    date, title, start, fin, loc, memo);
 
             getWritableDatabase().execSQL(sql);
             System.out.println("-------------------------------------------------------------------writed-----------------------");
@@ -62,12 +63,13 @@ public class DBHelper extends SQLiteOpenHelper {
             Log.e(TAG,"Error in deleting recodes");
         }
     }
-    public void updateSchBySQL(String _id, String title, String start, String fin, String loc, String memo) {
+
+    public void updateSchBySQL(String _id, String date, String title, String start, String fin, String loc, String memo) {
         try {
             String sql = String.format (
-                    "UPDATE  %s SET %s = '%s', %s = '%s', %s = '%s', %s = '%s', %s = '%s' WHERE %s = %s",
+                    "UPDATE  %s SET %s = '%s', %s = '%s', %s = '%s', %s = '%s', %s = '%s', %s = '%s' WHERE %s = %s",
                     ScheduleContract.Schedules.TABLE_NAME,
-
+                    ScheduleContract.Schedules.KEY_DATE, date,
                     ScheduleContract.Schedules.KEY_TITLE, title,
                     ScheduleContract.Schedules.KEY_START, start,
                     ScheduleContract.Schedules.KEY_FIN, fin,
@@ -83,9 +85,10 @@ public class DBHelper extends SQLiteOpenHelper {
         String sql = "Select * FROM " + ScheduleContract.Schedules.TABLE_NAME;
         return getReadableDatabase().rawQuery(sql,null);
     }
-    public long insertSchByMethod(String title, String start, String fin, String loc, String memo) {
+    public long insertSchByMethod(String date, String title, String start, String fin, String loc, String memo) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
+        values.put(ScheduleContract.Schedules.KEY_DATE, date);
         values.put(ScheduleContract.Schedules.KEY_TITLE, title);
         values.put(ScheduleContract.Schedules.KEY_START, start);
         values.put(ScheduleContract.Schedules.KEY_FIN, fin);
@@ -108,10 +111,11 @@ public class DBHelper extends SQLiteOpenHelper {
         return db.delete(ScheduleContract.Schedules.TABLE_NAME, whereClause, whereArgs);
     }
 
-    public long updateUserByMethod(String _id, String title, String start ,String fin, String loc, String memo) {
+    public long updateUserByMethod(String _id, String date, String title, String start ,String fin, String loc, String memo) {
         SQLiteDatabase db = getWritableDatabase();
 
         ContentValues values = new ContentValues();
+        values.put(ScheduleContract.Schedules.KEY_DATE, date);
         values.put(ScheduleContract.Schedules.KEY_TITLE, title);
         values.put(ScheduleContract.Schedules.KEY_START, start);
         values.put(ScheduleContract.Schedules.KEY_FIN, fin);

@@ -13,7 +13,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class MyGridViewAdapter extends BaseAdapter{
+public class MonthGridViewAdapter extends BaseAdapter{
     private ArrayList<item> mItems = new ArrayList<item>();
     private Context mContext;
     private int mResource;
@@ -21,7 +21,7 @@ public class MyGridViewAdapter extends BaseAdapter{
     MainActivity act = new MainActivity();
 
 
-    public MyGridViewAdapter(Context context, int resource, ArrayList<item> items)
+    public MonthGridViewAdapter(Context context, int resource, ArrayList<item> items)
     {
         mContext = context;
         mItems = items;

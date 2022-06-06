@@ -1,6 +1,7 @@
 package com.example.teamproject2;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -29,7 +30,7 @@ public class ScheduleActivity extends AppCompatActivity implements OnMapReadyCal
         private Button searchBtn, saveBtn, cancelBtn, delBtn;
         private EditText searchTxt, title, memo;
         private DBHelper mDBHelper;
-        public String StartTime, FinTime;
+        public String StartTime, FinTime, date;
 
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -70,7 +71,7 @@ public class ScheduleActivity extends AppCompatActivity implements OnMapReadyCal
             String month = intent.getStringExtra("month");
             String day = intent.getStringExtra("day");
             String time = intent.getStringExtra("time");
-
+            date = year+month+day;
             if(time == null)
                 title.setText(year+"년 "+month+"월 "+day+"일");
             else
@@ -84,17 +85,27 @@ public class ScheduleActivity extends AppCompatActivity implements OnMapReadyCal
                     int FINmin = FINminpicker.getValue();
                     StartTime = SThour+"시 "+STmin+"분";
                     FinTime = FINhour+"시 "+FINmin+"분";
+
                     insertRecord();
+                }
+            });
+            delBtn.setOnClickListener(new View.OnClickListener(){
+                public void onClick(View view)
+                {
 
                 }
             });
 
         }
     private void insertRecord() {
-        mDBHelper.insertSchBySQL(title.getText().toString(), StartTime, FinTime, searchTxt.getText().toString(), memo.getText().toString());
+
+        mDBHelper.insertSchBySQL(date, title.getText().toString(), StartTime, FinTime, searchTxt.getText().toString(), memo.getText().toString());
         System.out.println("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm inserted?"+StartTime);
     }
-
+    private void deleteRecord()
+    {
+        
+    }
     public void onMapReady(final GoogleMap googleMap) {
         mMap = googleMap;
         geocoder = new Geocoder(this);
