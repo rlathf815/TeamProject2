@@ -2,18 +2,14 @@ package com.example.teamproject2;
 
 import android.app.Activity;
 import android.content.res.Configuration;
+import android.database.Cursor;
 import android.graphics.Point;
 import android.os.Bundle;
 
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -21,21 +17,22 @@ import android.widget.GridView;
 
 import java.util.ArrayList;
 
-public class contentFragment extends Fragment {
+public class MonthFragment extends Fragment {
 
     private int mParam1;
     private int mParam2;
     int[] info = new int[4];
     MonthCalc mva = new MonthCalc();
     public static int[] current = new int[3];
-    static MyGridViewAdapter adapter;
+    static MonthGridViewAdapter adapter;
     GridView gv;
-    public contentFragment() {
+    private DBHelper mDBHelper;
+    public MonthFragment() {
         // Required empty public constructor
     }
 
-    public static contentFragment newInstance(int param1, int param2) {
-        contentFragment fragment = new contentFragment();
+    public static MonthFragment newInstance(int param1, int param2) {
+        MonthFragment fragment = new MonthFragment();
         Bundle args = new Bundle();
         args.putInt("Year", param1);
         args.putInt("Month", param2);
@@ -108,10 +105,10 @@ public class contentFragment extends Fragment {
         // Activity activity = getActivity();
         // MainActivity.setYearMonth(current[0],current[1]);
 
-        adapter = new MyGridViewAdapter(getActivity(), R.layout.item_layout, data);
+        adapter = new MonthGridViewAdapter(getActivity(), R.layout.item_layout, data);
 
         gridView.setAdapter(adapter);
-        // 리스트뷰 항목이 선택되었을 때, 항목 클릭 이벤트 처리
+        // 그리드뷰 항목이 선택되었을 때, 항목 클릭 이벤트 처리
         ArrayList<View> selected = new ArrayList<View>();
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
@@ -133,7 +130,12 @@ public class contentFragment extends Fragment {
         });
         return rootView;
     }
-
+    public void showSchedule(){
+        Cursor cursor = mDBHelper.getAllSchBySQL();
+        while(cursor.moveToNext()){
+            String title = cursor.getString(1);
+        }
+    }
 
 
     public Point getGridviewSize() {

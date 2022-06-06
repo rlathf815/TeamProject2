@@ -1,12 +1,9 @@
 package com.example.teamproject2;
 
-import static android.system.Os.remove;
-
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -17,16 +14,12 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 
-public class MainActivity extends AppCompatActivity implements contentFragment.fragInterface {
+public class MainActivity extends AppCompatActivity implements MonthFragment.fragInterface {
     public static int[] current = new int[3];
     public static int gridviewWidth, gridviewHeight;
     public static Context mContext;
@@ -34,6 +27,8 @@ public class MainActivity extends AppCompatActivity implements contentFragment.f
     private FloatingActionButton fab;
     public boolean clicked = false;
     public String[] selectedDate = new String[3];
+    private DBHelper mDBHelper;
+
     //PagerAdapter fragmentViewPagerAdapter;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements contentFragment.f
 
         mContext = this;
         vpPager = findViewById(R.id.vpPager);
-        FragmentStateAdapter adapter = new PagerAdapter(this);
+        FragmentStateAdapter adapter = new MonthPagerAdapter(this);
         vpPager.setAdapter(adapter);
         vpPager.setCurrentItem(10,false);
         fab = findViewById(R.id.fab_btn);
@@ -104,13 +99,13 @@ public class MainActivity extends AppCompatActivity implements contentFragment.f
             case R.id.action_monthactivity:
                 startActivity(new Intent(this,MainActivity.class));
                 if (wf != null) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.wf, contentFragment.newInstance(current[0], current[1])).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.wf, MonthFragment.newInstance(current[0], current[1])).commit();
                     //ActionBar ab = getSupportActionBar();
                     ab.setTitle(current[0] + "년 " + current[1] + "월");
                     break;
                 }
                 else {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fg, contentFragment.newInstance(current[0], current[1])).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fg, MonthFragment.newInstance(current[0], current[1])).commit();
                     //ActionBar ab = getSupportActionBar();
                     ab.setTitle(current[0] + "년 " + current[1] + "월");
                     break;
