@@ -2,6 +2,7 @@ package com.example.teamproject2;
 
 import android.app.Activity;
 import android.content.Context;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +20,7 @@ public class MonthGridViewAdapter extends BaseAdapter{
     private int mResource;
     public static int gridviewWidth, gridviewHeight;
     MainActivity act = new MainActivity();
-
+    private DBHelper mDBHelper;
 
     public MonthGridViewAdapter(Context context, int resource, ArrayList<item> items)
     {
@@ -69,6 +70,7 @@ public class MonthGridViewAdapter extends BaseAdapter{
         int td = mCal.get(Calendar.DAY_OF_WEEK);
         int today = mCal.get(Calendar.DAY_OF_MONTH);
         int curMonth = mCal.get(Calendar.MONTH)+1;
+        int year = mCal.get(Calendar.YEAR);
         //blank 세어서 8-blank개수 하면 첫번째 일요일 날짜 나옴
         //String sMonth = String.valueOf(curMonth);
         String sToday = String.valueOf(today);
@@ -77,7 +79,13 @@ public class MonthGridViewAdapter extends BaseAdapter{
 
             tv_day.setBackgroundColor(Color.rgb(222,182,174));
             tv_day.setTextColor(Color.WHITE);
-
+        }
+        Cursor cursor = mDBHelper.getAllSchBySQL();
+        int date = (10000*year);
+        while(cursor.moveToNext())
+        {
+            if (cursor.getInt(1)==1){
+            }
         }
         int j=0;
 

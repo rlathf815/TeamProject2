@@ -133,8 +133,10 @@ public class MonthFragment extends Fragment {
     public void showSchedule(){
         Cursor cursor = mDBHelper.getAllSchBySQL();
         while(cursor.moveToNext()){
-            String title = cursor.getString(1);
+            String date = cursor.getString(1);
+
         }
+
     }
 
 

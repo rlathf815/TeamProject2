@@ -85,10 +85,10 @@ public class DBHelper extends SQLiteOpenHelper {
         String sql = "Select * FROM " + ScheduleContract.Schedules.TABLE_NAME;
         return getReadableDatabase().rawQuery(sql,null);
     }
-    public long insertSchByMethod(String date, String title, String start, String fin, String loc, String memo) {
+    public long insertSchByMethod(int date, String title, String start, String fin, String loc, String memo) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(ScheduleContract.Schedules.KEY_DATE, date);
+        values.put(String.valueOf(ScheduleContract.Schedules.KEY_DATE), date);
         values.put(ScheduleContract.Schedules.KEY_TITLE, title);
         values.put(ScheduleContract.Schedules.KEY_START, start);
         values.put(ScheduleContract.Schedules.KEY_FIN, fin);
@@ -111,11 +111,11 @@ public class DBHelper extends SQLiteOpenHelper {
         return db.delete(ScheduleContract.Schedules.TABLE_NAME, whereClause, whereArgs);
     }
 
-    public long updateUserByMethod(String _id, String date, String title, String start ,String fin, String loc, String memo) {
+    public long updateUserByMethod(String _id, int date, String title, String start ,String fin, String loc, String memo) {
         SQLiteDatabase db = getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(ScheduleContract.Schedules.KEY_DATE, date);
+        values.put(String.valueOf(ScheduleContract.Schedules.KEY_DATE), date);
         values.put(ScheduleContract.Schedules.KEY_TITLE, title);
         values.put(ScheduleContract.Schedules.KEY_START, start);
         values.put(ScheduleContract.Schedules.KEY_FIN, fin);

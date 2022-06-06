@@ -87,6 +87,7 @@ public class ScheduleActivity extends AppCompatActivity implements OnMapReadyCal
                     FinTime = FINhour+"시 "+FINmin+"분";
 
                     insertRecord();
+
                 }
             });
             delBtn.setOnClickListener(new View.OnClickListener(){
@@ -104,7 +105,7 @@ public class ScheduleActivity extends AppCompatActivity implements OnMapReadyCal
     }
     private void deleteRecord()
     {
-        
+
     }
     public void onMapReady(final GoogleMap googleMap) {
         mMap = googleMap;

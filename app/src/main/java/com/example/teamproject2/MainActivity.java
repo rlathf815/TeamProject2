@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements MonthFragment.fra
                     intent.putExtra("year",selectedDate[0]);
                     intent.putExtra("month",selectedDate[1]);
                     intent.putExtra("day",selectedDate[2]);
+
                     startActivity(intent);
                 }
                 else
