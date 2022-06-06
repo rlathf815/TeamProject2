@@ -18,6 +18,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements contentFragment.f
     private ViewPager2 vpPager;
     private FloatingActionButton fab;
     public boolean clicked = false;
+    public String[] selectedDate = new String[3];
     //PagerAdapter fragmentViewPagerAdapter;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +52,10 @@ public class MainActivity extends AppCompatActivity implements contentFragment.f
                 if(clicked==true)
                 {
                     Intent intent = new Intent(getApplicationContext(), ScheduleActivity.class);
+                    //EditText title = findViewById(R.id.title);
+                    intent.putExtra("year",selectedDate[0]);
+                    intent.putExtra("month",selectedDate[1]);
+                    intent.putExtra("day",selectedDate[2]);
                     startActivity(intent);
                 }
                 else
@@ -65,6 +71,9 @@ public class MainActivity extends AppCompatActivity implements contentFragment.f
         Toast.makeText(MainActivity.this, year + "." + month + "." + date,
                 Toast.LENGTH_SHORT).show();
         clicked = true;
+        selectedDate[0] = year;
+        selectedDate[1] = month;
+        selectedDate[2] = date;
     }
     public void getYearMonth(int year, int month, int day)
     {

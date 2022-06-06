@@ -30,9 +30,9 @@
                     android:layout_column="0"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:textColorHint="@color/darkest"
+                    android:textColorHint="@color/whiteLike"
 
-                    android:textColor="@color/darkest"
+                    android:textColor="@color/whiteLike"
                     android:textSize="@dimen/weekDays_textSize" />
 
                 <TextView
@@ -43,9 +43,9 @@
                     android:layout_weight="1"
                     android:gravity="center"
 
-                    android:textColor="@color/darkest"
+                    android:textColor="@color/whiteLike"
 
-                    android:textColorHint="@color/darkest"
+                    android:textColorHint="@color/whiteLike"
                     android:textSize="@dimen/weekDays_textSize" />
 
                 <TextView
@@ -56,9 +56,9 @@
                     android:layout_weight="1"
                     android:gravity="center"
 
-                    android:textColor="@color/darkest"
+                    android:textColor="@color/whiteLike"
 
-                    android:textColorHint="@color/darkest"
+                    android:textColorHint="@color/whiteLike"
                     android:textSize="@dimen/weekDays_textSize" />
 
                 <TextView
@@ -69,9 +69,9 @@
                     android:layout_weight="1"
                     android:gravity="center"
 
-                    android:textColor="@color/darkest"
+                    android:textColor="@color/whiteLike"
 
-                    android:textColorHint="@color/darkest"
+                    android:textColorHint="@color/whiteLike"
                     android:textSize="@dimen/weekDays_textSize" />
 
                 <TextView
@@ -81,9 +81,9 @@
                     android:layout_column="4"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:textColor="@color/darkest"
+                    android:textColor="@color/whiteLike"
 
-                    android:textColorHint="@color/darkest"
+                    android:textColorHint="@color/whiteLike"
                     android:textSize="@dimen/weekDays_textSize" />
 
                 <TextView
@@ -93,8 +93,8 @@
                     android:layout_column="5"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:textColorHint="@color/darkest"
-                    android:textColor="@color/darkest"
+                    android:textColorHint="@color/whiteLike"
+                    android:textColor="@color/whiteLike"
 
                     android:textSize="@dimen/weekDays_textSize" />
 
@@ -105,8 +105,8 @@
                     android:layout_column="6"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:textColorHint="@color/darkest"
-                    android:textColor="@color/darkest"
+                    android:textColorHint="@color/whiteLike"
+                    android:textColor="@color/whiteLike"
 
                     android:textSize="@dimen/weekDays_textSize" />
             </LinearLayout>`
