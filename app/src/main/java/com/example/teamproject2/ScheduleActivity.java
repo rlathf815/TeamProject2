@@ -101,7 +101,7 @@ public class ScheduleActivity extends AppCompatActivity implements OnMapReadyCal
             delBtn.setOnClickListener(new View.OnClickListener(){
                 public void onClick(View view)
                 {
-
+                    deleteRecord();
                 }
             });
 
@@ -113,7 +113,8 @@ public class ScheduleActivity extends AppCompatActivity implements OnMapReadyCal
     }
     private void deleteRecord()
     {
-
+        mDBHelper.deleteSchBySQL(date);
+        System.out.println("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm deleted?");
     }
     public void onMapReady(final GoogleMap googleMap) {
         mMap = googleMap;

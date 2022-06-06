@@ -50,13 +50,13 @@ public class DBHelper extends SQLiteOpenHelper {
             Log.e(TAG,"Error in inserting recodes");
         }
     }
-    public void deleteSchBySQL(String _id) {
+    public void deleteSchBySQL(String date) {
         try {
             String sql = String.format (
                     "DELETE FROM %s WHERE %s = %s",
                     ScheduleContract.Schedules.TABLE_NAME,
-                    ScheduleContract.Schedules._ID,
-                    _id);
+                    ScheduleContract.Schedules.KEY_DATE,
+                    date);
             getWritableDatabase().execSQL(sql);
 
         } catch (SQLException e) {
