@@ -126,6 +126,14 @@ public class ScheduleActivity extends AppCompatActivity implements OnMapReadyCal
             }
         });
 
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                onBackPressed();
+            }
+        });
+
         searchBtn.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View v){
