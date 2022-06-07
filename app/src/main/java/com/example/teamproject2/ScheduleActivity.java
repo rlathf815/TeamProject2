@@ -1,11 +1,13 @@
 package com.example.teamproject2;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.NumberPicker;
@@ -34,9 +36,13 @@ public class ScheduleActivity extends AppCompatActivity implements OnMapReadyCal
         private DBHelper mDBHelper;
         public String StartTime, FinTime, date;
         public MonthFragment monthFragment = new MonthFragment();
+        Dialog dialog;
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.add_schedule);
+            dialog  = new Dialog(this);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setContentView(R.layout.delete_dialog);
             ActionBar ab = getSupportActionBar();
             ab.setTitle("일정 추가");
             title = (EditText)findViewById(R.id.title);
@@ -74,16 +80,41 @@ public class ScheduleActivity extends AppCompatActivity implements OnMapReadyCal
             String month = intent.getStringExtra("month");
             String day = intent.getStringExtra("day");
             String time = intent.getStringExtra("time");
+            String getDate = intent.getStringExtra("date");
+            String getTitle = intent.getStringExtra("title");
+            String getSTtime = intent.getStringExtra("STtime");
+            String getFINtime = intent.getStringExtra("FINtime");
+            String getLoc = intent.getStringExtra("loc");
+            String getMemo = intent.getStringExtra("memo");
+
+
            // View view = intent.getParcelableExtra("view");
            // TextView tv = (TextView) view.findViewById(R.id.textView_schedule1);
-            int intDate = (Integer.valueOf(year)*10000) + (Integer.valueOf(month)*100) + Integer.valueOf(day);
-            date = String.valueOf(intDate);
-            System.out.println("date? "+date);
-            if(time == null)
-                title.setText(year+"년 "+month+"월 "+day+"일");
-            else
-                title.setText(year+"년 "+month+"월 "+day+"일 "+time+"시");
+            if(year!=null) {
+                int intDate = (Integer.valueOf(year) * 10000) + (Integer.valueOf(month) * 100) + Integer.valueOf(day);
+                date = String.valueOf(intDate);
+                System.out.println("date? " + date);
+                if (time == null)
+                    title.setText(year + "년 " + month + "월 " + day + "일");
+                else
+                    title.setText(year + "년 " + month + "월 " + day + "일 " + time + "시");
+            }
+            if(getDate!=null )
+            {
+                title.setText(getTitle);
+                int SH, SM, FH, FM;
+                SH = Integer.valueOf(getSTtime)/100;
+                SM = Integer.valueOf(getSTtime)%100;
+                FH = Integer.valueOf(getFINtime)/100;
+                FM = Integer.valueOf(getFINtime)%100;
+                SThourpicker.setValue(SH);
+                STminpicker.setValue(SM);
+                FINhourpicker.setValue(FH);
+                FINminpicker.setValue(FM);
+                searchTxt.setText(getLoc);
+                memo.setText(getMemo);
 
+            }
             saveBtn.setOnClickListener(new View.OnClickListener(){
                 public void onClick(View view){
                     Intent intent = new Intent(ScheduleActivity.this, MonthActivity.class);
@@ -91,8 +122,10 @@ public class ScheduleActivity extends AppCompatActivity implements OnMapReadyCal
                     int STmin = STminpicker.getValue();
                     int FINhour = FINhourpicker.getValue();
                     int FINmin = FINminpicker.getValue();
-                    StartTime = SThour+"시 "+STmin+"분";
-                    FinTime = FINhour+"시 "+FINmin+"분";
+
+                    StartTime = String.valueOf((SThour*100)+(STmin));
+                    FinTime = String.valueOf((FINhour*100)+(FINmin));
+
                     System.out.println("777777777777777777777777777777777777777777777 save 시도");
 
                     insertRecord();
@@ -102,9 +135,7 @@ public class ScheduleActivity extends AppCompatActivity implements OnMapReadyCal
             delBtn.setOnClickListener(new View.OnClickListener(){
                 public void onClick(View view)
                 {
-                    Intent intent = new Intent(ScheduleActivity.this, MonthActivity.class);
-                    deleteRecord();
-                    startActivity(intent);
+                    showDialog();
                 }
             });
             cancelBtn.setOnClickListener(new View.OnClickListener() {
@@ -116,6 +147,27 @@ public class ScheduleActivity extends AppCompatActivity implements OnMapReadyCal
             });
 
         }
+    public void showDialog() {
+        dialog.show();
+        mDBHelper = new DBHelper(this);
+
+        Button yesBtn = dialog.findViewById(R.id.delete_yes);
+        Button noBtn = dialog.findViewById(R.id.delete_no);
+        yesBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mDBHelper.deleteAllBySQL();
+                startActivity(new Intent(getApplicationContext(), MonthActivity.class));
+            }
+        });
+        noBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), MonthActivity.class));
+
+            }
+        });
+    }
     private void insertRecord() {
 
         mDBHelper.insertSchBySQL(date, title.getText().toString(), StartTime, FinTime, searchTxt.getText().toString(), memo.getText().toString());
@@ -123,7 +175,7 @@ public class ScheduleActivity extends AppCompatActivity implements OnMapReadyCal
     }
     private void deleteRecord()
     {
-        mDBHelper.deleteSchBySQL(date);
+        mDBHelper.deleteSchBySQL(title.getText().toString());
         System.out.println("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm deleted?");
     }
     public void onMapReady(final GoogleMap googleMap) {

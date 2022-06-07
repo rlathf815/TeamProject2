@@ -91,7 +91,7 @@ public class MonthGridViewAdapter extends BaseAdapter{
         if(mItems.get(i).schedule1 != null)
             tv_schedule1.setBackgroundColor(Color.parseColor("#C2AEAE"));
         if(mItems.get(i).schedule2 != null)
-            tv_schedule2.setBackgroundColor(Color.parseColor("#F0E1DF"));
+            tv_schedule2.setBackgroundColor(Color.parseColor("#616161"));
         for(int k=8-j;k<= mItems.size();k+=7)
         {
             if(String.valueOf(k).equals(mItems.get(i).day))

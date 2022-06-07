@@ -7,4 +7,7 @@
     <item
         android:id="@+id/action_weekactivity"
         android:title="주간 달력"/>
+    <item
+        android:id="@+id/action_deleteAll"
+        android:title="일정 모두 삭제"/>
 </menu>

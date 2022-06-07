@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textSize = "@dimen/schedule_textSize"
-        android:textColor="@color/darkest"
+        android:textColor="@color/whiteLike"
 
         />
 

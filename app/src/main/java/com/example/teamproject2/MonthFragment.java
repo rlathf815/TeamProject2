@@ -1,6 +1,8 @@
 package com.example.teamproject2;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Point;
@@ -12,7 +14,9 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
 
@@ -34,6 +38,7 @@ public class MonthFragment extends Fragment {
     private DBHelper mDBHelper;
     ArrayList<View> selected = new ArrayList<View>();
     Cursor cursor;
+    Dialog dialog1;
     public MonthFragment() {
         // Required empty public constructor
     }
@@ -66,10 +71,15 @@ public class MonthFragment extends Fragment {
         // Inflate the layout for this fragment
         mDBHelper = new DBHelper(this.getContext());
         cursor = mDBHelper.getAllSchBySQL();
+        dialog1  = new Dialog(this.getActivity());
+        dialog1.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog1.setContentView(R.layout.select_dialog);
+
         //mDBHelper.deleteAllBySQL();
         while (cursor.moveToNext())
         {
-            System.out.println(cursor.getInt(0) +" "+ cursor.getString(1)+" "+ cursor.getString(2)+" "+ cursor.getString(3));
+            System.out.println(cursor.getInt(0) +" "+ cursor.getString(1)+" "+ cursor.getString(2)+" "+ cursor.getString(3)
+                    +" "+ cursor.getString(4)+" "+ cursor.getString(5)+" "+ cursor.getString(6));
         }
         if (getArguments() != null) {
 
@@ -98,12 +108,8 @@ public class MonthFragment extends Fragment {
         info = mva.calcInfo(current);
         int displayWidth = getGridviewSize().x;
         int displayHeight = getGridviewSize().y;
-        System.out.println("-------------------------------------------------------------------Frag gridviewidth=" + displayWidth + " height=" + displayHeight);
-        System.out.println("------------------------------------------------------------------adapterInterface 성공여부" + (getActivity() instanceof fragInterface));
-        System.out.println("-------------------------------------------------------------------current[0]=" + current[0] + " [1]=" + current[1] + " [2]=" + current[2]);
         if (getActivity() instanceof fragInterface) {
             ((fragInterface) getActivity()).mainGetDisplay(displayWidth, displayHeight);
-            System.out.println("------------------------------------------------------------------호출됨?------------------");
         }
         //(setYearMonth(current[0],current[1]);
         ArrayList<item> data = new ArrayList<item>();
@@ -161,11 +167,14 @@ public class MonthFragment extends Fragment {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 Activity activity = getActivity();
-
+                String sch1=null,sch2 = null,date=null;
                 if (activity instanceof MonthActivity) {
                     String day = ((item) adapter.getItem(position)).day;
                     String year = String.valueOf(current[0]);
                     String month = String.valueOf(current[1]);
+                    sch1 = ((item) adapter.getItem(position)).schedule1;
+                    sch2 = ((item) adapter.getItem(position)).schedule2;
+                    date = String.valueOf((current[0]*10000)+(current[1]*100)+current[2]);
                     ((MonthActivity) activity).onDateSelected(year, month, day);
                 }
                 if (!selected.isEmpty()) {
@@ -175,13 +184,93 @@ public class MonthFragment extends Fragment {
                 view.setBackgroundResource(R.drawable.clicked);
 
                 selected.add(view);
+                if(sch1 !=null && sch2 !=null)
+                    showDialog1(date, sch1, sch2);
+                else if(sch1!=null&&sch2==null)
+                    showSchedule(sch1);
+                else if(sch1==null&&sch2!=null)
+                    showSchedule(sch2);
+
 
             }
         });
 
         return rootView;
     }
+    public void showSchedule(String sch)
+    {
+        if(mDBHelper.findSchBySQL(sch)!=null) {
+            cursor = mDBHelper.findSchBySQL(sch);
+            System.out.println("-------------------------------------------keyword "+ sch);
 
+            System.out.println("--------------------------------------------cursor found "+ cursor);
+            if(cursor!=null) cursor.moveToFirst();
+            Intent intent1 = new Intent(getActivity(), ScheduleActivity.class);
+            intent1.putExtra("id", cursor.getInt(0));
+            intent1.putExtra("date", cursor.getString(1));
+            intent1.putExtra("title", sch);
+            intent1.putExtra("STtime", cursor.getString(3));
+            intent1.putExtra("FINtime", cursor.getString(4));
+            intent1.putExtra("loc", cursor.getString(5));
+            intent1.putExtra("memo", cursor.getString(6));
+            startActivity(intent1);
+        }
+    }
+    public void showDialog1(String date, String sch1, String sch2){
+        dialog1.show();
+        mDBHelper = new DBHelper(this.getContext());
+
+        TextView tv = dialog1.findViewById(R.id.dialog_date);
+        Button btn1 = dialog1.findViewById(R.id.dialog_btn1);
+        Button btn2 = dialog1.findViewById(R.id.dialog_btn2);
+        tv.setText(date);
+        btn1.setText(sch1);
+        btn2.setText(sch2);
+
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(mDBHelper.findSchBySQL(sch1)!=null) {
+                    cursor = mDBHelper.findSchBySQL(sch1);
+                    System.out.println("-------------------------------------------keyword "+ sch1);
+
+                    System.out.println("--------------------------------------------cursor found "+ cursor);
+                    if(cursor!=null) cursor.moveToFirst();
+                    Intent intent1 = new Intent(getActivity(), ScheduleActivity.class);
+                    intent1.putExtra("id", cursor.getInt(0));
+                    intent1.putExtra("date", date);
+                    intent1.putExtra("title", sch1);
+                    intent1.putExtra("STtime", cursor.getString(3));
+                    intent1.putExtra("FINtime", cursor.getString(4));
+                    intent1.putExtra("loc", cursor.getString(5));
+                    intent1.putExtra("memo", cursor.getString(6));
+                    startActivity(intent1);
+                }
+            }
+        });
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(mDBHelper.findSchBySQL(sch2)!=null) {
+                    cursor = mDBHelper.findSchBySQL(sch2);
+                    System.out.println("-------------------------------------------keyword "+ sch2);
+
+                    System.out.println("--------------------------------------------cursor found "+ cursor);
+                    if(cursor!=null) cursor.moveToFirst();
+                    Intent intent1 = new Intent(getActivity(), ScheduleActivity.class);
+                    intent1.putExtra("id", cursor.getInt(0));
+                    intent1.putExtra("date", date);
+                    intent1.putExtra("title", sch2);
+                    intent1.putExtra("STtime", cursor.getString(3));
+                    intent1.putExtra("FINtime", cursor.getString(4));
+                    intent1.putExtra("loc", cursor.getString(5));
+                    intent1.putExtra("memo", cursor.getString(6));
+                    startActivity(intent1);
+                }
+            }
+        });
+
+    }
 
     public Point getGridviewSize() {
         //Display display = getActivity().getWindowManager().getDefaultDisplay();

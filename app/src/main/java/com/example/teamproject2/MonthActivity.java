@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +16,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -31,11 +35,15 @@ public class MonthActivity extends AppCompatActivity implements MonthFragment.fr
     private DBHelper mDBHelper;
     public View pressedView;
     public String title;
+    Dialog dialog2;
     //PagerAdapter fragmentViewPagerAdapter;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        dialog2  = new Dialog(this);
+        dialog2.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog2.setContentView(R.layout.delete_dialog);
+        mDBHelper = new DBHelper(this);
         mContext = this;
         vpPager = findViewById(R.id.vpPager);
         FragmentStateAdapter adapter = new MonthPagerAdapter(this);
@@ -68,7 +76,27 @@ public class MonthActivity extends AppCompatActivity implements MonthFragment.fr
         //MonthFragment frag = MonthFragment.newInstance(current[0],current[1],title);
         //getSupportFragmentManager().beginTransaction().replace(R.id.fragpos, frag).commit();
     }
+    public void showDialog2() {
+        dialog2.show();
+        mDBHelper = new DBHelper(this);
 
+        Button yesBtn = dialog2.findViewById(R.id.delete_yes);
+        Button noBtn = dialog2.findViewById(R.id.delete_no);
+        yesBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mDBHelper.deleteAllBySQL();
+                startActivity(new Intent(getApplicationContext(), MonthActivity.class));
+            }
+        });
+        noBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), MonthActivity.class));
+
+            }
+        });
+    }
     public void onDateSelected(String year, String month, String date) {
         Toast.makeText(MonthActivity.this, year + "." + month + "." + date,
                 Toast.LENGTH_SHORT).show();
@@ -129,9 +157,14 @@ public class MonthActivity extends AppCompatActivity implements MonthFragment.fr
                     ab.setTitle(current[0] + "년 " + current[1] + "월");
                     break;
                 }*/
+            case R.id.action_deleteAll:
+                showDialog2();
+                //startActivity(new Intent(this, MonthActivity.class));
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
+
 
     @Override
     public void mainGetDisplay(int w, int h) {

@@ -59,13 +59,13 @@ public class DBHelper extends SQLiteOpenHelper {
             Log.e(TAG,"Error in inserting recodes");
         }
     }
-    public void deleteSchBySQL(String date) {
+    public void deleteSchBySQL(String title) {
         try {
             String sql = String.format (
-                    "DELETE FROM %s WHERE %s = %s",
+                    "DELETE FROM %s WHERE %s = '%s'",
                     ScheduleContract.Schedules.TABLE_NAME,
-                    ScheduleContract.Schedules.KEY_DATE,
-                    date);
+                    ScheduleContract.Schedules.KEY_TITLE,
+                    title);
             getWritableDatabase().execSQL(sql);
             System.out.println("successfully deleted");
         } catch (SQLException e) {
@@ -104,9 +104,9 @@ public class DBHelper extends SQLiteOpenHelper {
         String sql = "Select * FROM " + ScheduleContract.Schedules.TABLE_NAME;
         return getReadableDatabase().rawQuery(sql,null);
     }
-    public Cursor findSchBySQL(String date)
+    public Cursor findSchBySQL(String title)
     {
-        String sql = "Select * FROM " + ScheduleContract.Schedules.TABLE_NAME+"WHERE "+ ScheduleContract.Schedules.KEY_DATE+"='"+date+"'";
+        String sql = "Select * FROM " + ScheduleContract.Schedules.TABLE_NAME+" WHERE "+ ScheduleContract.Schedules.KEY_TITLE+"='"+title+"'";
 
         return getReadableDatabase().rawQuery(sql,null);
 
