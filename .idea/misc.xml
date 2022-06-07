@@ -3,7 +3,6 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/82108/AndroidStudioProjects/TeamProject2/app/src/main/res/layout/add_schedule.xml" value="0.12135416666666667" />
         <entry key="..\:/Users/82109/AndroidStudioProjects/TeamProject2/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1315" />
         <entry key="..\:/Users/82109/AndroidStudioProjects/TeamProject2/app/src/main/res/drawable/border.xml" value="0.1" />
         <entry key="..\:/Users/82109/AndroidStudioProjects/TeamProject2/app/src/main/res/drawable/clicked.xml" value="0.1" />
@@ -22,6 +21,7 @@
         <entry key="..\:/Users/82109/AndroidStudioProjects/TeamProject2/app/src/main/res/layout/fragment_week.xml" value="0.1" />
         <entry key="..\:/Users/82109/AndroidStudioProjects/TeamProject2/app/src/main/res/layout/item_layout.xml" value="0.6" />
         <entry key="..\:/Users/82109/AndroidStudioProjects/TeamProject2/app/src/main/res/layout/schedule_layout.xml" value="0.1" />
+        <entry key="..\:/Users/82109/AndroidStudioProjects/TeamProject2/app/src/main/res/layout/select_dialog.xml" value="0.1" />
         <entry key="..\:/Users/82109/AndroidStudioProjects/TeamProject2/app/src/main/res/layout/timeline.xml" value="0.1" />
         <entry key="..\:/Users/82109/AndroidStudioProjects/TeamProject2/app/src/main/res/menu/menu.xml" value="0.2609375" />
       </map>

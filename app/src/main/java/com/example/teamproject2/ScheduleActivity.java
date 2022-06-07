@@ -12,6 +12,7 @@ import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -36,7 +37,8 @@ public class ScheduleActivity extends AppCompatActivity implements OnMapReadyCal
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.add_schedule);
-
+            ActionBar ab = getSupportActionBar();
+            ab.setTitle("일정 추가");
             title = (EditText)findViewById(R.id.title);
             searchTxt = (EditText) findViewById(R.id.searchTxt);
             memo = (EditText) findViewById(R.id.memo);
@@ -74,7 +76,9 @@ public class ScheduleActivity extends AppCompatActivity implements OnMapReadyCal
             String time = intent.getStringExtra("time");
            // View view = intent.getParcelableExtra("view");
            // TextView tv = (TextView) view.findViewById(R.id.textView_schedule1);
-            date = year+month+day;
+            int intDate = (Integer.valueOf(year)*10000) + (Integer.valueOf(month)*100) + Integer.valueOf(day);
+            date = String.valueOf(intDate);
+            System.out.println("date? "+date);
             if(time == null)
                 title.setText(year+"년 "+month+"월 "+day+"일");
             else
@@ -82,9 +86,7 @@ public class ScheduleActivity extends AppCompatActivity implements OnMapReadyCal
 
             saveBtn.setOnClickListener(new View.OnClickListener(){
                 public void onClick(View view){
-                    Intent intent = new Intent(getApplicationContext(), MonthActivity.class);
-                    //EditText title = findViewById(R.id.title);
-                    intent.putExtra("title",title.getText().toString());
+                    Intent intent = new Intent(ScheduleActivity.this, MonthActivity.class);
                     int SThour = SThourpicker.getValue();
                     int STmin = STminpicker.getValue();
                     int FINhour = FINhourpicker.getValue();
@@ -95,20 +97,28 @@ public class ScheduleActivity extends AppCompatActivity implements OnMapReadyCal
 
                     insertRecord();
                     startActivity(intent);
-
                 }
             });
             delBtn.setOnClickListener(new View.OnClickListener(){
                 public void onClick(View view)
                 {
+                    Intent intent = new Intent(ScheduleActivity.this, MonthActivity.class);
                     deleteRecord();
+                    startActivity(intent);
+                }
+            });
+            cancelBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    onBackPressed();
                 }
             });
 
         }
     private void insertRecord() {
 
-        mDBHelper.insertSchBySQL(String.valueOf(date), title.getText().toString(), StartTime, FinTime, searchTxt.getText().toString(), memo.getText().toString());
+        mDBHelper.insertSchBySQL(date, title.getText().toString(), StartTime, FinTime, searchTxt.getText().toString(), memo.getText().toString());
         System.out.println("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm inserted?"+StartTime);
     }
     private void deleteRecord()
@@ -135,13 +145,6 @@ public class ScheduleActivity extends AppCompatActivity implements OnMapReadyCal
             }
         });
 
-        cancelBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                onBackPressed();
-            }
-        });
 
         searchBtn.setOnClickListener(new Button.OnClickListener(){
             @Override

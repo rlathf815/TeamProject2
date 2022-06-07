@@ -2,6 +2,7 @@ package com.example.teamproject2;
 
 import android.app.Activity;
 import android.content.res.Configuration;
+import android.database.Cursor;
 import android.graphics.Point;
 import android.os.Bundle;
 
@@ -17,12 +18,13 @@ import android.widget.TextView;
 
 import java.time.Month;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class MonthFragment extends Fragment {
 
     private int mParam1;
     private int mParam2;
-    private String mParam3;
+
 
     int[] info = new int[4];
     MonthCalc mva = new MonthCalc();
@@ -31,6 +33,7 @@ public class MonthFragment extends Fragment {
     GridView gv;
     private DBHelper mDBHelper;
     ArrayList<View> selected = new ArrayList<View>();
+    Cursor cursor;
     public MonthFragment() {
         // Required empty public constructor
     }
@@ -44,22 +47,13 @@ public class MonthFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
-    public static MonthFragment newInstance(int param1, int param2, String param3) {
-        MonthFragment fragment = new MonthFragment();
-        Bundle args = new Bundle();
-        args.putInt("Year", param1);
-        args.putInt("Month", param2);
-        args.putString("title",param3);
-        fragment.setArguments(args);
-        return fragment;
-    }
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getInt("Year");
             mParam2 = getArguments().getInt("Month");
-            if(getArguments().getString("title")!=null)
-                mParam3 = getArguments().getString("title");
+
         }
         current[0]= mParam1;
         current[1]= mParam2;
@@ -70,13 +64,18 @@ public class MonthFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        mDBHelper = new DBHelper(this.getContext());
+        cursor = mDBHelper.getAllSchBySQL();
+        //mDBHelper.deleteAllBySQL();
+        while (cursor.moveToNext())
+        {
+            System.out.println(cursor.getInt(0) +" "+ cursor.getString(1)+" "+ cursor.getString(2)+" "+ cursor.getString(3));
+        }
         if (getArguments() != null) {
 
             mParam1 = getArguments().getInt("Year");
             mParam2 = getArguments().getInt("Month");
-            if (getArguments().getString("title") != null)
-                mParam3 = getArguments().getString("title");
-            System.out.println("-------------------------------------------------------------------title  " + mParam3);
+
             current[0] = mParam1;
             current[1] = mParam2;
         }
@@ -109,18 +108,44 @@ public class MonthFragment extends Fragment {
         //(setYearMonth(current[0],current[1]);
         ArrayList<item> data = new ArrayList<item>();
         for (int i = 0; i < info[0] - 1; i++) {
-            data.add(new item(" ", null, null, current[1]));
+            data.add(new item(" ", null, null, current[1], current[0]));
         }
         for (int i = 0; i < info[1]; i++) {
-            if (mParam3 == null)
-                data.add(new item("" + (i + 1), null, null, current[1]));
-            else {
-                //System.out.println("ismParam3empty? "+mParam3==null);
-                data.add(new item("" + (i + 1), mParam3, null, current[1]));
-            }
+            data.add(new item(String.valueOf(i+1), null, null, current[1], current[0]));
         }
         for (int i = 0; i < (43 - (info[0] + info[1])); i++) {
-            data.add(new item(" ", null, null, current[1]));
+            data.add(new item(" ", null, null, current[1], current[0]));
+        }
+        if(mDBHelper!=null)
+        {
+            System.out.println("9999999999999999999999999 Searching DB ");
+            cursor = mDBHelper.getAllSchBySQL();
+
+            while(cursor.moveToNext()) {
+                for(int i=0;i<data.size();i++) {
+                    int  y= data.get(i).year ;
+                    int m = data.get(i).month ;
+                    int d ;
+                    if(data.get(i).day!=" ")
+                        d=Integer.valueOf(data.get(i).day);
+                    else
+                        d=0;
+                    int date = (y*10000) +( m*100) + d ;
+                    //System.out.println("********************** date = "+date);
+                    //System.out.println("********************** DB date = "+cursor.getString(1));
+                    if (String.valueOf(date).equals(cursor.getString(1))) {
+                        if (data.get(i).schedule1 == null) {
+                            data.set(i, new item(String.valueOf(d), cursor.getString(2), null, m, y));
+                            System.out.println("000000000000000000000!! date =" + String.valueOf(date)+ " DBdate=  " + cursor.getString(1) + "equal? "+String.valueOf(date).equals(cursor.getString(1)));
+                            System.out.println("**********************successfully saved in ArrayList");
+                        }
+                        else {
+                            String schedule1 = data.get(i).schedule1;
+                            data.set(i, new item(String.valueOf(d), schedule1, cursor.getString(2), m, y));
+                        }
+                    }
+                }
+            }
         }
 
         GridView gridView = rootView.findViewById(R.id.gridview);

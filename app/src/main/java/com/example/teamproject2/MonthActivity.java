@@ -61,12 +61,12 @@ public class MonthActivity extends AppCompatActivity implements MonthFragment.fr
 
             }
         });
-        Intent getIntent = getIntent();
-        title = getIntent.getStringExtra("title");
-        System.out.println("000000000000000000000000000000  받은title값 "+title);
+        //Intent getIntent = getIntent();
+       //title = getIntent.getStringExtra("title");
+        //System.out.println("000000000000000000000000000000  받은title값 "+title);
         //FragmentManager fragmentManager = getSupportFragmentManager();
-        MonthFragment frag = MonthFragment.newInstance(current[0],current[1],title);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragpos, frag).commit();
+        //MonthFragment frag = MonthFragment.newInstance(current[0],current[1],title);
+        //getSupportFragmentManager().beginTransaction().replace(R.id.fragpos, frag).commit();
     }
 
     public void onDateSelected(String year, String month, String date) {
@@ -106,25 +106,12 @@ public class MonthActivity extends AppCompatActivity implements MonthFragment.fr
             case R.id.action_monthactivity:
                 startActivity(new Intent(this, MonthActivity.class));
                 if (wf != null) {
-                    if (title != null){
-                        getSupportFragmentManager().beginTransaction().replace(R.id.wf, MonthFragment.newInstance(current[0], current[1], title)).commit();
-                        System.out.println("------------title호출--------");
-                     }
-                    else
-                        getSupportFragmentManager().beginTransaction().replace(R.id.wf, MonthFragment.newInstance(current[0], current[1])).commit();
-
-                    //ActionBar ab = getSupportActionBar();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.wf, MonthFragment.newInstance(current[0], current[1])).commit();
                     ab.setTitle(current[0] + "년 " + current[1] + "월");
                     break;
                 }
                 else {
-                    if(title!=null) {
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fg, MonthFragment.newInstance(current[0], current[1], title)).commit();
-                    }
-                    else
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fg, MonthFragment.newInstance(current[0], current[1])).commit();
-
-                    //ActionBar ab = getSupportActionBar();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fg, MonthFragment.newInstance(current[0], current[1])).commit();
                     ab.setTitle(current[0] + "년 " + current[1] + "월");
                     break;
                 }

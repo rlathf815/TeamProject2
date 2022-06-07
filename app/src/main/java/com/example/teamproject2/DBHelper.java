@@ -11,15 +11,23 @@ import android.util.Log;
 
 public class DBHelper extends SQLiteOpenHelper {
     final static String TAG="SQLiteDB";
+    public boolean flag =false;
 
     public DBHelper(Context context) {
         super(context, ScheduleContract.DB_NAME, null, ScheduleContract.DATABASE_VERSION);
     }
+    public boolean isCreated()
+    {
+        return flag;
+    }
+
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         Log.i(TAG,getClass().getName()+".onCreate()");
         db.execSQL(ScheduleContract.Schedules.CREATE_TABLE);
+        flag = true;
+        System.out.println("dbhelper created!!");
     }
 
     @Override
@@ -28,6 +36,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(ScheduleContract.Schedules.DELETE_TABLE);
         onCreate(db);
     }
+
     public void insertSchBySQL(String date, String title, String start, String fin, String loc, String memo) {
         try {
             String sql = String.format (
@@ -58,12 +67,22 @@ public class DBHelper extends SQLiteOpenHelper {
                     ScheduleContract.Schedules.KEY_DATE,
                     date);
             getWritableDatabase().execSQL(sql);
-
+            System.out.println("successfully deleted");
         } catch (SQLException e) {
             Log.e(TAG,"Error in deleting recodes");
         }
     }
-
+    public void deleteAllBySQL() {
+        try {
+            String sql = String.format (
+                    "DELETE FROM %s",
+                    ScheduleContract.Schedules.TABLE_NAME);
+            getWritableDatabase().execSQL(sql);
+            System.out.println("All records successfully deleted");
+        } catch (SQLException e) {
+            Log.e(TAG,"Error in deleting recodes");
+        }
+    }
     public void updateSchBySQL(String _id, String date, String title, String start, String fin, String loc, String memo) {
         try {
             String sql = String.format (
@@ -84,6 +103,13 @@ public class DBHelper extends SQLiteOpenHelper {
     public Cursor getAllSchBySQL() {
         String sql = "Select * FROM " + ScheduleContract.Schedules.TABLE_NAME;
         return getReadableDatabase().rawQuery(sql,null);
+    }
+    public Cursor findSchBySQL(String date)
+    {
+        String sql = "Select * FROM " + ScheduleContract.Schedules.TABLE_NAME+"WHERE "+ ScheduleContract.Schedules.KEY_DATE+"='"+date+"'";
+
+        return getReadableDatabase().rawQuery(sql,null);
+
     }
     public long insertSchByMethod(String date, String title, String start, String fin, String loc, String memo) {
         SQLiteDatabase db = getWritableDatabase();

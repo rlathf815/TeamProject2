@@ -5,7 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:id="@+id/eachItem"
-    android:padding="10dp">
+    android:padding="2dp">
 
     <TextView
         android:id="@+id/textView_day"
@@ -21,18 +21,20 @@
 
     <TextView
         android:id="@+id/textView_schedule1"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textSize = "10sp"
+        android:textColor="@color/whiteLike"
 
         />
     <TextView
         android:id="@+id/textView_schedule2"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textSize = "@dimen/schedule_textSize"
+        android:textColor="@color/darkest"
 
         />
 

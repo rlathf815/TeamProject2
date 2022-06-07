@@ -59,7 +59,7 @@ public class MonthGridViewAdapter extends BaseAdapter{
 
         TextView tv_schedule1 = convertView.findViewById(R.id.textView_schedule1);
         tv_schedule1.setText(mItems.get(i).schedule1);
-
+        //System.out.println("+++++++++++++++++++++++ is schedule1 valid? "+ mItems.get(i).schedule1!=" ");
         TextView tv_schedule2 = convertView.findViewById(R.id.textView_schedule2);
         tv_schedule2.setText(mItems.get(i).schedule2);
 
@@ -88,7 +88,10 @@ public class MonthGridViewAdapter extends BaseAdapter{
                 break;
             j++;
         }
-
+        if(mItems.get(i).schedule1 != null)
+            tv_schedule1.setBackgroundColor(Color.parseColor("#C2AEAE"));
+        if(mItems.get(i).schedule2 != null)
+            tv_schedule2.setBackgroundColor(Color.parseColor("#F0E1DF"));
         for(int k=8-j;k<= mItems.size();k+=7)
         {
             if(String.valueOf(k).equals(mItems.get(i).day))
@@ -99,6 +102,7 @@ public class MonthGridViewAdapter extends BaseAdapter{
             if(String.valueOf(k).equals(mItems.get(i).day))
                 tv_day.setTextColor(Color.rgb(32,109,171));
         }
+
         gridviewWidth = ((MonthActivity) MonthActivity.mContext).gridviewWidth;
         gridviewHeight = ((MonthActivity) MonthActivity.mContext).gridviewHeight;
         int width = gridviewWidth/7;
