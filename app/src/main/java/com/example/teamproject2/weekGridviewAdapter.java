@@ -1,6 +1,7 @@
 package com.example.teamproject2;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,8 +52,15 @@ public class weekGridviewAdapter extends BaseAdapter{
         }
 
         convertView.setBackgroundResource(R.drawable.border);
-        TextView tv_schedule1 = convertView.findViewById(R.id.week1);
+
+        TextView tv_schedule1 = convertView.findViewById(R.id.week_schedule1);
         tv_schedule1.setText(mItems.get(i).schedule);
+
+
+        if(mItems.get(i).schedule != "")
+            tv_schedule1.setBackgroundColor(Color.parseColor("#C2AEAE"));
+
+
         gridviewWidth = ((MonthActivity) MonthActivity.mContext).gridviewWidth;
 
         int width = (gridviewWidth-20)/7;

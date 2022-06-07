@@ -1,6 +1,9 @@
 package com.example.teamproject2;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -9,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.LinearLayout;
@@ -27,6 +31,9 @@ public class WeekFragment extends Fragment {
     private int mParam1;
     private int mParam2;
     private int mParam3;
+    private DBHelper mDBHelper;
+    Cursor cursor;
+    Dialog dialog1;
 
     static listAdapter Ladapter;
     public WeekFragment() {
@@ -91,7 +98,11 @@ public class WeekFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
+        mDBHelper = new DBHelper(this.getContext());
+        cursor = mDBHelper.getAllSchBySQL();
+        dialog1  = new Dialog(this.getActivity());
+        dialog1.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog1.setContentView(R.layout.select_dialog);
         if (getArguments() != null) {
 
             mParam1 = getArguments().getInt("Year");
@@ -184,7 +195,33 @@ public class WeekFragment extends Fragment {
 
         ArrayList<weekItem> data = new ArrayList<weekItem>();
         for (int i = 0; i<175; i++) {
-            data.add(new weekItem("",i));
+            data.add(new weekItem("", current[0],current[1],ww[i%7]));
+        }
+        if(mDBHelper!=null)
+        {
+            System.out.println("9999999999999999999999999 Searching DB ");
+            cursor = mDBHelper.getAllSchBySQL();
+
+            while(cursor.moveToNext()) {
+                for(int i=0;i<data.size();i++) {
+                    int  y= data.get(i).year ;
+                    int m = data.get(i).month ;
+                    int d ;
+                    if(data.get(i).day!=" ")
+                        d=Integer.valueOf(data.get(i).day);
+                    else
+                        d=0;
+                    int date = (y*10000) +( m*100) + d ;
+                    int STtime = i/7;
+                    int getSTtime = Integer.valueOf(cursor.getString(3))/100;
+                    if (String.valueOf(date).equals(cursor.getString(1))&&String.valueOf(STtime).equals(String.valueOf(getSTtime)))
+                    {
+                        data.set(i, new weekItem(cursor.getString(2),y,m,String.valueOf(d)));
+                        System.out.println("000000000000000000000!! date =" + String.valueOf(date)+ " DBdate=  " + cursor.getString(1) + "equal? "+String.valueOf(date).equals(cursor.getString(1)));
+                        System.out.println("**********************successfully saved in ArrayList");
+                    }
+                }
+            }
         }
         adapter = new weekGridviewAdapter(getActivity(), R.layout.schedule_layout, data);
         gridView = rootView.findViewById(R.id.weekGridview);
@@ -195,11 +232,14 @@ public class WeekFragment extends Fragment {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 Activity activity = getActivity();
+                String sch1 = null;
+
                 if (activity instanceof WeekActivity) {
-                    System.out.println("-------------------------------------------------------------------weekFrag cicked pos"+position);
+                    System.out.println("-------------------------------------------------------------------weekFrag cicked pos" + position);
+                    sch1 = ((weekItem) adapter.getItem(position)).schedule;
                     ((WeekActivity) activity).onPosSelected(position);
                 }
-                if(!selected.isEmpty()) {
+                if (!selected.isEmpty()) {
                     selected.get(0).setBackgroundResource(R.drawable.border);
                     selected.clear();
                 }
@@ -213,7 +253,7 @@ public class WeekFragment extends Fragment {
                 TextView tv6 = activity.findViewById(R.id.day6);
                 TextView tv7 = activity.findViewById(R.id.day7);
 
-                switch (position%7) {
+                switch (position % 7) {
                     case 0:
                         tv1.setBackgroundColor(Color.parseColor("#616161"));
                         tv1.setTextColor(Color.parseColor("#FAF7F5"));
@@ -232,7 +272,8 @@ public class WeekFragment extends Fragment {
                         tv4.setBackgroundColor(Color.parseColor("#C2AEAE"));
                         tv5.setBackgroundColor(Color.parseColor("#C2AEAE"));
                         tv6.setBackgroundColor(Color.parseColor("#C2AEAE"));
-                        tv7.setBackgroundColor(Color.parseColor("#C2AEAE"));                        break;
+                        tv7.setBackgroundColor(Color.parseColor("#C2AEAE"));
+                        break;
                     case 2:
                         tv1.setBackgroundColor(Color.parseColor("#C2AEAE"));
                         tv2.setBackgroundColor(Color.parseColor("#C2AEAE"));
@@ -251,7 +292,8 @@ public class WeekFragment extends Fragment {
                         tv4.setTextColor(Color.parseColor("#FAF7F5"));
                         tv5.setBackgroundColor(Color.parseColor("#C2AEAE"));
                         tv6.setBackgroundColor(Color.parseColor("#C2AEAE"));
-                        tv7.setBackgroundColor(Color.parseColor("#C2AEAE"));                        break;
+                        tv7.setBackgroundColor(Color.parseColor("#C2AEAE"));
+                        break;
                     case 4:
                         tv1.setBackgroundColor(Color.parseColor("#C2AEAE"));
                         tv2.setBackgroundColor(Color.parseColor("#C2AEAE"));
@@ -260,7 +302,8 @@ public class WeekFragment extends Fragment {
                         tv5.setBackgroundColor(Color.parseColor("#616161"));
                         tv5.setTextColor(Color.parseColor("#FAF7F5"));
                         tv6.setBackgroundColor(Color.parseColor("#C2AEAE"));
-                        tv7.setBackgroundColor(Color.parseColor("#C2AEAE"));                        break;
+                        tv7.setBackgroundColor(Color.parseColor("#C2AEAE"));
+                        break;
                     case 5:
                         tv1.setBackgroundColor(Color.parseColor("#C2AEAE"));
                         tv2.setBackgroundColor(Color.parseColor("#C2AEAE"));
@@ -269,7 +312,8 @@ public class WeekFragment extends Fragment {
                         tv5.setBackgroundColor(Color.parseColor("#C2AEAE"));
                         tv6.setBackgroundColor(Color.parseColor("#616161"));
                         tv6.setTextColor(Color.parseColor("#FAF7F5"));
-                        tv7.setBackgroundColor(Color.parseColor("#C2AEAE"));                        break;
+                        tv7.setBackgroundColor(Color.parseColor("#C2AEAE"));
+                        break;
                     case 6:
                         tv1.setBackgroundColor(Color.parseColor("#C2AEAE"));
                         tv2.setBackgroundColor(Color.parseColor("#C2AEAE"));
@@ -280,19 +324,36 @@ public class WeekFragment extends Fragment {
                         tv7.setBackgroundColor(Color.parseColor("#616161"));
                         tv7.setTextColor(Color.parseColor("#FAF7F5"));
                         break;
-
-
-
                 }
-            }
-        });
+                if (sch1 != "") showSchedule(sch1);
+                }
+             });
         return rootView;
+        }
+
+    public void showSchedule(String sch)
+    {
+        if(mDBHelper.findSchBySQL(sch)!=null) {
+            cursor = mDBHelper.findSchBySQL(sch);
+            System.out.println("-------------------------------------------keyword "+ sch);
+
+            System.out.println("--------------------------------------------cursor found "+ cursor);
+            if(cursor!=null) cursor.moveToFirst();
+            Intent intent1 = new Intent(getActivity(), ScheduleActivity.class);
+            intent1.putExtra("id", cursor.getInt(0));
+            intent1.putExtra("date", cursor.getString(1));
+            intent1.putExtra("title", sch);
+            intent1.putExtra("STtime", cursor.getString(3));
+            intent1.putExtra("FINtime", cursor.getString(4));
+            intent1.putExtra("loc", cursor.getString(5));
+            intent1.putExtra("memo", cursor.getString(6));
+            startActivity(intent1);
+        }
     }
 
     public interface wfragInterface {
         public void getYearMonth(int year, int month, int day);
         public void mainGetDisplay(int w, int h);
         public void setAppbar(int year, int month);
-
     }
 }

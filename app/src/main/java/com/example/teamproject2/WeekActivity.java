@@ -1,5 +1,6 @@
 package com.example.teamproject2;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +8,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
@@ -24,11 +27,19 @@ public class WeekActivity extends AppCompatActivity implements WeekFragment.wfra
     private ViewPager2 weekPager;
     private FloatingActionButton fab;
     public boolean clicked = false;
+    private DBHelper mDBHelper;
+    Dialog dialog2;
+
     public String[] selectedDateTime = new String[4];
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_week);
+        dialog2  = new Dialog(this);
+        dialog2.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog2.setContentView(R.layout.delete_dialog);
+        mDBHelper = new DBHelper(this);
+
         mContext = this;
         weekPager = findViewById(R.id.weekPager);
         FragmentStateAdapter adapter = new weekPagerAdapter(this);
@@ -51,7 +62,7 @@ public class WeekActivity extends AppCompatActivity implements WeekFragment.wfra
                     startActivity(intent);
                 }
                 else
-                    Toast.makeText(WeekActivity.this, "날짜를 선택해주세요",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(WeekActivity.this, "날짜, 시간을 선택해주세요",Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -86,8 +97,33 @@ public class WeekActivity extends AppCompatActivity implements WeekFragment.wfra
                     ab.setTitle(current[0] + "년 " + current[1] + "월");
                     break;
                 }
+            case R.id.action_deleteAll:
+                showDialog_all();
+                //startActivity(new Intent(this, MonthActivity.class));
+                break;
         }
         return super.onOptionsItemSelected(item);
+    }
+    public void showDialog_all() {
+        dialog2.show();
+        mDBHelper = new DBHelper(this);
+
+        Button yesBtn = dialog2.findViewById(R.id.delete_yes);
+        Button noBtn = dialog2.findViewById(R.id.delete_no);
+        yesBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mDBHelper.deleteAllBySQL();
+                startActivity(new Intent(getApplicationContext(), WeekActivity.class));
+            }
+        });
+        noBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), WeekActivity.class));
+
+            }
+        });
     }
     public void onPosSelected(int pos) {
         System.out.println("-------------------------------------------------------------------weekActivity onposselected-position"+pos);

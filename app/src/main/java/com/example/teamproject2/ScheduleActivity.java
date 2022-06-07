@@ -96,8 +96,12 @@ public class ScheduleActivity extends AppCompatActivity implements OnMapReadyCal
                 System.out.println("date? " + date);
                 if (time == null)
                     title.setText(year + "년 " + month + "월 " + day + "일");
-                else
+                else {
                     title.setText(year + "년 " + month + "월 " + day + "일 " + time + "시");
+                    SThourpicker.setValue(Integer.valueOf(time));
+                    FINhourpicker.setValue(Integer.valueOf(time));
+
+                }
             }
             if(getDate!=null )
             {
@@ -117,7 +121,6 @@ public class ScheduleActivity extends AppCompatActivity implements OnMapReadyCal
             }
             saveBtn.setOnClickListener(new View.OnClickListener(){
                 public void onClick(View view){
-                    Intent intent = new Intent(ScheduleActivity.this, MonthActivity.class);
                     int SThour = SThourpicker.getValue();
                     int STmin = STminpicker.getValue();
                     int FINhour = FINhourpicker.getValue();
@@ -125,17 +128,23 @@ public class ScheduleActivity extends AppCompatActivity implements OnMapReadyCal
 
                     StartTime = String.valueOf((SThour*100)+(STmin));
                     FinTime = String.valueOf((FINhour*100)+(FINmin));
-
-                    System.out.println("777777777777777777777777777777777777777777777 save 시도");
-
                     insertRecord();
-                    startActivity(intent);
+                    if(time==null)
+                    {
+                        Intent intent = new Intent(ScheduleActivity.this, MonthActivity.class);
+                        startActivity(intent);
+                    }
+                    else
+                    {
+                        Intent intent = new Intent(ScheduleActivity.this, WeekActivity.class);
+                        startActivity(intent);
+                    }
                 }
             });
             delBtn.setOnClickListener(new View.OnClickListener(){
                 public void onClick(View view)
                 {
-                    showDialog();
+                    showDialog(title.getText().toString());
                 }
             });
             cancelBtn.setOnClickListener(new View.OnClickListener() {
@@ -147,7 +156,8 @@ public class ScheduleActivity extends AppCompatActivity implements OnMapReadyCal
             });
 
         }
-    public void showDialog() {
+
+    public void showDialog(String title) {
         dialog.show();
         mDBHelper = new DBHelper(this);
 
@@ -156,7 +166,7 @@ public class ScheduleActivity extends AppCompatActivity implements OnMapReadyCal
         yesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mDBHelper.deleteAllBySQL();
+                deleteRecord();
                 startActivity(new Intent(getApplicationContext(), MonthActivity.class));
             }
         });
@@ -164,10 +174,10 @@ public class ScheduleActivity extends AppCompatActivity implements OnMapReadyCal
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), MonthActivity.class));
-
             }
         });
     }
+
     private void insertRecord() {
 
         mDBHelper.insertSchBySQL(date, title.getText().toString(), StartTime, FinTime, searchTxt.getText().toString(), memo.getText().toString());

@@ -11,14 +11,12 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -76,7 +74,7 @@ public class MonthActivity extends AppCompatActivity implements MonthFragment.fr
         //MonthFragment frag = MonthFragment.newInstance(current[0],current[1],title);
         //getSupportFragmentManager().beginTransaction().replace(R.id.fragpos, frag).commit();
     }
-    public void showDialog2() {
+    public void showDialog_all() {
         dialog2.show();
         mDBHelper = new DBHelper(this);
 
@@ -97,6 +95,7 @@ public class MonthActivity extends AppCompatActivity implements MonthFragment.fr
             }
         });
     }
+
     public void onDateSelected(String year, String month, String date) {
         Toast.makeText(MonthActivity.this, year + "." + month + "." + date,
                 Toast.LENGTH_SHORT).show();
@@ -158,7 +157,7 @@ public class MonthActivity extends AppCompatActivity implements MonthFragment.fr
                     break;
                 }*/
             case R.id.action_deleteAll:
-                showDialog2();
+                showDialog_all();
                 //startActivity(new Intent(this, MonthActivity.class));
                 break;
         }
