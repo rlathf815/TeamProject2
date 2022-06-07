@@ -15,7 +15,7 @@
         android:layout_weight="1"
         android:textSize = "11sp"
         android:gravity="center"
-        
+
         android:textColor="@color/darkest"
         />
 
